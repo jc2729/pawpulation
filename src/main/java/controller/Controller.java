@@ -8,12 +8,12 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 
 public abstract class Controller {
-	String baseURL;
+	String baseURL = "localhost:8080";
 
-	@FXML
-	public void setServer(String server) {
-		baseURL = server;
-	}
+//	@FXML
+//	public void setServer(String server) {
+//		baseURL = server;
+//	}
 
 	@FXML
 	public void handleCancelPressed(final ActionEvent event) {

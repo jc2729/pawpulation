@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
@@ -71,23 +72,23 @@ public class LoginController extends Controller {
 				return;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
 			Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");
 			a.showAndWait();
 			return;
 		}
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/welcome.fxml"));
-        SplitPane root;
+        AnchorPane root;
 		try {
 			root = loader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;
 		}
-//        ((MainController) loader.getController()).setStage(loginStage);
-//        Scene scene = new Scene(root);
-//        loginStage.setScene(scene);
-//        loginStage.show();
+        ((MainController) loader.getController()).setStage(loginStage);
+        Scene scene = new Scene(root);
+        loginStage.setScene(scene);
+        loginStage.show();
 		
 	}
 

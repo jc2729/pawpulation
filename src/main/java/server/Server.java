@@ -21,7 +21,7 @@ public class Server {
 	public void run() {
 		port(8080);
 
-		post("/CritterWorld/login", (request, response) -> {
+		post("/login", (request, response) -> {
 			String reqbod = request.body();
 			JsonObject userPass = new Gson().fromJson(new StringReader(reqbod), JsonObject.class);
 			String username = userPass.getAsJsonPrimitive("username").getAsString();
@@ -31,7 +31,7 @@ public class Server {
 			response.status(201);
 
 			// if bad: response.status(401)
-			response.status(401);
+//			response.status(401);
 			return "";
 
 		});

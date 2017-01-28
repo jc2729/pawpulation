@@ -23,11 +23,11 @@
                               <Pane HBox.hgrow="ALWAYS" />
                               <MenuButton fx:id="importB" mnemonicParsing="false" text="Import">
                                 <items>
-                                  <MenuItem fx:id="importTextFile" mnemonicParsing="false" onAction="#handleImportTextFileAction" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                  <MenuItem fx:id="importTextFile" mnemonicParsing="false" onAction="#handleImportTextFileAction" text="Text File" />
+                                  <MenuItem mnemonicParsing="false" text="Kek" />
                                 </items>
                               </MenuButton>
-                              <Button fx:id="settings" mnemonicParsing="false">
+                              <Button fx:id="settingsB" mnemonicParsing="false">
                               <graphic>
                                   <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                                       <image>

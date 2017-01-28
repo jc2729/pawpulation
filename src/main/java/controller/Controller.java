@@ -16,9 +16,6 @@ public abstract class Controller {
 	}
 
 	@FXML
-	public abstract void handleOk(ActionEvent event);
-
-	@FXML
 	public void handleCancelPressed(final ActionEvent event) {
 		Scene scene = ((Button) (event.getSource())).getScene();
 		Stage s = (Stage) scene.getWindow();

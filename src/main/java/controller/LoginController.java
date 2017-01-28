@@ -16,9 +16,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
 
 public class LoginController extends Controller {
 	private Stage loginStage;
+
+	@FXML
+	private Button loginB;
 
 	@FXML
 	private TextField usernameField;
@@ -34,7 +38,7 @@ public class LoginController extends Controller {
 	}
 
 	@FXML
-	public void handleOk(final ActionEvent event) {
+	public void handleLoginButton(final ActionEvent event) {
 		String username = usernameField.getText();
 		String password = passwordField.getText();
 

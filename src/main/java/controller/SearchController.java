@@ -37,7 +37,6 @@ public class SearchController extends Controller {
 
 	}
 
-	@Override
 	public void handleOk(ActionEvent event) {
 
 		try {

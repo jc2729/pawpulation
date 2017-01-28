@@ -11,6 +11,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -80,10 +81,11 @@ public class MainController extends Controller {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
-            //connection.setRequestProperty("Content-Type", "application/json");
-            System.out.println(jsonArray);
+            connection.setRequestProperty("Content-Type", "application/json");
             PrintWriter w = new PrintWriter(connection.getOutputStream());
-            w.println(jsonArray);
+            for ( JsonElement obj : jsonArray ) {
+                w.println((JsonObject) obj);
+            }
             w.flush();
         } catch (JsonIOException e) {
             // TODO Auto-generated catch block

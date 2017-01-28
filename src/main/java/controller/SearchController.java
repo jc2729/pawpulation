@@ -45,15 +45,24 @@ public class SearchController extends Controller {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			JsonObject search = new JsonObject();
-			search.addProperty("zip", zip.getValue());
-			search.addProperty("species", species.getValue());
-			search.addProperty("disease", disease.getValue());
-			search.addProperty("test", test.getValue());
-			search.addProperty("testResult", testResult.getValue());
-			search.addProperty("startMonth", startMonth.getValue());
-			search.addProperty("startYear", startYear.getValue());
-			search.addProperty("endYear", endYear.getValue());
-			search.addProperty("endMonth", endMonth.getValue());
+			if (zip.getValue() != null)
+				search.addProperty("zip", zip.getValue());
+			if (species.getValue() != null)
+				search.addProperty("species", species.getValue());
+			if (disease.getValue() != null)
+				search.addProperty("disease", disease.getValue());
+			if (test.getValue() != null)
+				search.addProperty("test", test.getValue());
+			if (testResult.getValue() != null)
+				search.addProperty("testResult", testResult.getValue());
+			if (startMonth.getValue() != null)
+				search.addProperty("startMonth", startMonth.getValue());
+			if (startYear.getValue() != null)
+				search.addProperty("startYear", startYear.getValue());
+			if (endYear.getValue() != null)
+				search.addProperty("endYear", endYear.getValue());
+			if (endMonth.getValue() != null)
+				search.addProperty("endMonth", endMonth.getValue());
 
 			connection.setRequestMethod("POST");
 			connection.setRequestProperty("Content-Type", "application/json");

@@ -19,8 +19,6 @@ import javafx.stage.Stage;
 
 public class LoginController {
 	private Stage loginStage;
-	private final String baseURL = ""; //TODO
-	private int sessionID;
 
 	@FXML
 	private TextField usernameField;
@@ -56,7 +54,7 @@ public class LoginController {
 		loginCreds.addProperty("password", password);
 
 		try{
-			URL url = new URL(baseURL + "/login");
+			URL url = new URL(AccessInfo.baseURL + "/login?=sessionID=" + AccessInfo.sessionID);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
@@ -65,9 +63,6 @@ public class LoginController {
 			w.flush();
 
 			if(connection.getResponseCode() == 201){
-				BufferedReader r =
-						new BufferedReader(new InputStreamReader(connection.getInputStream()));
-				sessionID = r.read();
 			}
 			else{
 				Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");

@@ -17,20 +17,33 @@
                <children>
                   <VBox layoutX="-1.0" layoutY="1.0" prefHeight="317.0" prefWidth="600.0">
                      <children>
-                        <MenuBar>
-                          <menus>
-                            <Menu mnemonicParsing="false" text="Import">
-                              <items>
-                                <MenuItem mnemonicParsing="false" text="Close" />
-                              </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" text="Search Database"/>
-                            <Menu mnemonicParsing="false" text="Settings"/>
-                          </menus>
-                        </MenuBar>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                          <items>
+                              <MenuButton fx:id="importB" mnemonicParsing="false" text="Import">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                </items>
+                              </MenuButton>
+                            <Button fx:id="searchB" mnemonicParsing="false" text="Search Database" />
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <Button fx:id="settings" mnemonicParsing="false">
+                              <graphic>
+                                  <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                          <Image url="@settings.png" />
+                                      </image>
+                                  </ImageView>
+                              </graphic>
+                                  <tooltip>
+                                      <Tooltip text="Settings" />
+                                  </tooltip>
+                              </Button>
+                          </items>
+                        </ToolBar>
                         <ImageView fx:id="welcome" fitHeight="285.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="/welcome.png" />
+                             <Image url="@welcome.png" />
                          </image>
                          </ImageView>
                      </children>

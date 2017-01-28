@@ -20,15 +20,19 @@
                         <VBox layoutX="-1.0" layoutY="1.0" prefHeight="317.0" prefWidth="600.0">
                             <children>
                         <ImageView fx:id="hospitalimg" fitHeight="150.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font></Text>
-                        <TextField prefHeight="31.0" prefWidth="351.0" promptText="Username">
+                        <TextField style="-fx-text-alignment: center;" prefHeight="31.0" prefWidth="351.0" promptText="Username">
                            <VBox.margin>
-                              <Insets />
+                              <Insets top = "25" bottom = "12.5" right = "100" left = "100"/>
                            </VBox.margin></TextField>
-                        <TextField promptText="Password" />
+                        <TextField style="-fx-text-alignment: center;" prefHeight="31.0" prefWidth="351.0" promptText="Password" >
+                            <VBox.margin>
+                                <Insets top = "12.5" bottom = "25" right = "100" left = "100"/>
+                            </VBox.margin>
+                                </TextField>
                             </children>
                         </VBox>
                     </children>

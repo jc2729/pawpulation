@@ -21,7 +21,7 @@
                           <items>
                               <MenuButton fx:id="importB" mnemonicParsing="false" text="Import">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                  <MenuItem fx:id="importTextFile" mnemonicParsing="false" onAction="#handleImportTextFileAction" text="Action 1" />
                                   <MenuItem mnemonicParsing="false" text="Action 2" />
                                 </items>
                               </MenuButton>

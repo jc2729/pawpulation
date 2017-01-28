@@ -19,20 +19,25 @@
                     <children>
                         <VBox layoutX="-1.0" layoutY="1.0" prefHeight="317.0" prefWidth="600.0">
                             <children>
-                        <ImageView fx:id="hospitalimg" fitHeight="150.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="hospitalimg" fitHeight="90.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font></Text>
-                        <TextField style="-fx-text-alignment: center;" prefHeight="31.0" prefWidth="351.0" promptText="Username">
+                        <TextField fx:id="username" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
                            <VBox.margin>
-                              <Insets top = "25" bottom = "12.5" right = "100" left = "100"/>
+                              <Insets bottom="12.5" left="100" right="100" top="25" />
                            </VBox.margin></TextField>
-                        <TextField style="-fx-text-alignment: center;" prefHeight="31.0" prefWidth="351.0" promptText="Password" >
+                        <TextField fx:id="password" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
                             <VBox.margin>
-                                <Insets top = "12.5" bottom = "25" right = "100" left = "100"/>
+                                <Insets bottom="25" left="100" right="100" top="12.5" />
                             </VBox.margin>
                                 </TextField>
+                        <Button fx:id="loginB" mnemonicParsing="false" text="Login">
+                            <VBox.margin>
+                                <Insets bottom="12.5" left="100" right="100" top="25" />
+                            </VBox.margin>
+                                </Button>
                             </children>
                         </VBox>
                     </children>

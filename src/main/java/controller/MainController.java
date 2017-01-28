@@ -5,6 +5,7 @@ import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 public class MainController {
@@ -12,23 +13,29 @@ public class MainController {
     
     //fields for fxml elements
     @FXML
-    private Button importButton;
+    private Button importB;
     
     @FXML
-    private Button searchButton;
+    private Button searchB;
     
     @FXML
-    private Button settingsButton;
+    private Button settingsB;
     
     @FXML
     private SplitPane splitPane;
+    
+    @FXML
+    private AnchorPane menuPane;
 
+    @FXML
+    private AnchorPane bottomPane;
+    
     /**
      * Presents a file chooser and loads file 
      */
     
     @FXML
-    private void handleImportAction(ActionEvent event) {
+    private void handleImportTextFileAction(ActionEvent event) {
         //load file chooser
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Import File");

@@ -83,10 +83,15 @@ public class MainController extends Controller {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             PrintWriter w = new PrintWriter(connection.getOutputStream());
-            for ( JsonElement obj : jsonArray ) {
-                w.println((JsonObject) obj);
-            }
+            JsonObject jsonObj = jsonArray.get(0).getAsJsonObject();
+            w.println(jsonObj);
             w.flush();
+
+            /*for (int i = 0; i < jsonArray.size(); i++) {
+                JsonObject jsonObj = jsonArray.get(i).getAsJsonObject();
+                w.println(jsonObj);
+                w.flush();
+            }*/
         } catch (JsonIOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -97,7 +102,6 @@ public class MainController extends Controller {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
         
         // submit POST request
     }

@@ -29,7 +29,6 @@ public class Server {
 			String username = userPass.getAsJsonPrimitive("username").getAsString();
 			String password = userPass.getAsJsonPrimitive("password").getAsString();
 
-			System.out.println(username + " " + password);
 			// if good
 			response.status(201);
 
@@ -51,8 +50,7 @@ public class Server {
 		
 		post("/import", (request, response) -> {
             response.header("Content-Type", "application/json");
-            //System.out.println(request.body());
-            System.out.println("i am in server");
+            System.out.println(request.body().toString());
             return "";
         });
 	}

@@ -3,6 +3,12 @@ package controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
@@ -18,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class MainController {
+public class MainController extends Controller {
     private View view;
     private Stage mainStage;
 
@@ -57,9 +63,10 @@ public class MainController {
 
     /**
      * Presents a file chooser and loads file
+     * @throws IOException 
      */
     @FXML
-    private void handleImportTextFileAction(ActionEvent event) {
+    private void handleImportTextFileAction(ActionEvent event) throws IOException {
         // load file chooser
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Import File");
@@ -69,6 +76,15 @@ public class MainController {
         JsonParser parser = new JsonParser();
         try {
             JsonArray jsonArray = (JsonArray) parser.parse(new FileReader(file));
+            URL url = new URL("http://" + baseURL + "/import");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            //connection.setRequestProperty("Content-Type", "application/json");
+            System.out.println(jsonArray);
+            PrintWriter w = new PrintWriter(connection.getOutputStream());
+            w.println(jsonArray);
+            w.flush();
         } catch (JsonIOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -114,6 +130,12 @@ public class MainController {
 
     public void updateView() {
 
+    }
+
+    @Override
+    public void setView(View view) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

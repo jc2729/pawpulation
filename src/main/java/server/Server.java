@@ -10,6 +10,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
+import spark.Route;
+
 import static spark.Spark.delete;
 
 public class Server {
@@ -27,6 +29,7 @@ public class Server {
 			String username = userPass.getAsJsonPrimitive("username").getAsString();
 			String password = userPass.getAsJsonPrimitive("password").getAsString();
 
+			System.out.println(username + " " + password);
 			// if good
 			response.status(201);
 
@@ -45,6 +48,14 @@ public class Server {
 			response.status(401);
 			return "";
 		});
+		
+		post("/import", (request, response) -> {
+            response.header("Content-Type", "application/json");
+            //System.out.println(request.body());
+            System.out.println("i am in server");
+            return "";
+        });
 	}
+
 
 }

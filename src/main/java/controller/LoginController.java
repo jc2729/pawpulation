@@ -33,11 +33,6 @@ public class LoginController {
 		loginStage = stage;
 	}
 
-	//button click method
-	//get username from username field
-	//get password from password field
-	//convert to username/password combination class and send to server
-
 	@FXML
 	private void handleLoginButton(final ActionEvent event){
 		String username = usernameField.getText();
@@ -54,7 +49,7 @@ public class LoginController {
 		loginCreds.addProperty("password", password);
 
 		try{
-			URL url = new URL(AccessInfo.baseURL + "/login?=sessionID=" + AccessInfo.sessionID);
+			URL url = new URL(baseURL + "/login");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");

@@ -17,25 +17,27 @@
                     </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
-                        <VBox layoutX="-1.0" layoutY="1.0" prefHeight="317.0" prefWidth="600.0">
+                        <VBox alignment="CENTER" layoutX="-1.0" layoutY="1.0" prefHeight="317.0" prefWidth="600.0">
                             <children>
-                        <ImageView fx:id="hospitalimg" fitHeight="90.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER">
+                        <ImageView fx:id="hospitalimg" fitHeight="90.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@vetsymbol.jpg" /></image>
+                                </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24pt; -fx-font-family: Helvetica;" text="Login" textAlignment="CENTER" wrappingWidth="102.6201171875">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                              <Font name="Impact" size="15.0" />
                            </font></Text>
-                        <TextField fx:id="username" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
+                        <TextField fx:id="usernameField" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
                            <VBox.margin>
                               <Insets bottom="12.5" left="100" right="100" top="25" />
                            </VBox.margin></TextField>
-                        <TextField fx:id="password" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
+                        <TextField fx:id="passwordField" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
                             <VBox.margin>
-                                <Insets bottom="25" left="100" right="100" top="12.5" />
+                                <Insets left="100" right="100" top="12.5" />
                             </VBox.margin>
                                 </TextField>
-                        <Button fx:id="loginB" mnemonicParsing="false" text="Login">
+                        <Button fx:id="loginB" mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
                             <VBox.margin>
-                                <Insets bottom="12.5" left="100" right="100" top="25" />
+                                <Insets left="100" right="100" top="12.5" />
                             </VBox.margin>
                                 </Button>
                             </children>

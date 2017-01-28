@@ -24,16 +24,16 @@
                            <font>
                               <Font name="Arial Rounded MT Bold" size="15.0" />
                            </font></Text>
-                        <TextField fx:id="username" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
+                        <TextField fx:id="usernameField" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
                            <VBox.margin>
                               <Insets bottom="12.5" left="100" right="100" top="25" />
                            </VBox.margin></TextField>
-                        <TextField fx:id="password" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
+                        <TextField fx:id="passwordField" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
                             <VBox.margin>
                                 <Insets bottom="25" left="100" right="100" top="12.5" />
                             </VBox.margin>
                                 </TextField>
-                        <Button fx:id="loginB" mnemonicParsing="false" text="Login">
+                        <Button fx:id="loginB" mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
                             <VBox.margin>
                                 <Insets bottom="12.5" left="100" right="100" top="25" />
                             </VBox.margin>

@@ -12,17 +12,17 @@
           <AnchorPane fx:id="menuPane" minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="598.0" style="-fx-background-color: #559FBF;">
                <children>
                   <ImageView fx:id="logo" fitHeight="73.0" fitWidth="308.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                  <ToolBar layoutY="84.0" prefHeight="49.0" prefWidth="601.0">
+                  <ToolBar layoutY="84.0" prefHeight="49.0" prefWidth="601.0" style="-fx-background-color: #559FBF;">
                     <items>
-                      <Button fx:id="searchB" mnemonicParsing="false" text="Search Database" />
+                      <Button fx:id="searchB" mnemonicParsing="false" style="-fx-background-color: #B0DBEE;" text="Search Database" />
                         <Pane HBox.hgrow="ALWAYS" />
-                        <MenuButton fx:id="importB" mnemonicParsing="false" text="Import">
+                        <MenuButton fx:id="importB" mnemonicParsing="false" style="-fx-background-color: #B0DBEE;" text="Import">
                           <items>
                             <MenuItem fx:id="importTextFile" mnemonicParsing="false" onAction="#handleImportTextFileAction" text="Text File" />
                             <MenuItem mnemonicParsing="false" text="Kek" />
                           </items>
                         </MenuButton>
-                        <Button fx:id="settingsB" mnemonicParsing="false">
+                        <Button fx:id="settingsB" mnemonicParsing="false" style="-fx-background-color: #B0DBEE;">
                         <graphic>
                             <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                                 <image>

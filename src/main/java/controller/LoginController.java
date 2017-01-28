@@ -17,7 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class LoginController extends Controller {
 	private Stage loginStage;
 
 	@FXML
@@ -26,19 +26,19 @@ public class LoginController {
 	@FXML
 	private TextField passwordField;
 
-	//Username field
-	//Password field
+	// Username field
+	// Password field
 
 	public void setStage(Stage stage) {
 		loginStage = stage;
 	}
 
 	@FXML
-	private void handleLoginButton(final ActionEvent event){
+	public void handleOk(final ActionEvent event) {
 		String username = usernameField.getText();
 		String password = passwordField.getText();
 
-		if(username.equals("") || password.equals("")){
+		if (username.equals("") || password.equals("")) {
 			Alert a = new Alert(AlertType.ERROR, "Username and password cannot be empty.");
 			a.showAndWait();
 			return;
@@ -48,8 +48,8 @@ public class LoginController {
 		loginCreds.addProperty("username", username);
 		loginCreds.addProperty("password", password);
 
-		try{
-			URL url = new URL(baseURL + "/login");
+		try {
+			URL url = new URL("http://" + baseURL + "/login");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
@@ -57,15 +57,18 @@ public class LoginController {
 			w.println(loginCreds);
 			w.flush();
 
-			if(connection.getResponseCode() == 201){
-			}
-			else{
+			if (connection.getResponseCode() == 201) {
+			} else {
 				Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");
 				a.showAndWait();
 			}
-		}
-		catch(IOException e){
+		} catch (IOException e) {
 
 		}
+	}
+
+	@Override
+	public void setView(View view) {
+
 	}
 }

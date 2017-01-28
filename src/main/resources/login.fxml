@@ -11,34 +11,34 @@
     <children>
         <SplitPane dividerPositions="0.1934673366834171" layoutX="-1.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #559FBF;">
                     <children>
                         <ImageView fx:id="logo" fitHeight="73.0" fitWidth="308.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
                     </children></AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #B0DBEE;">
                     <children>
                         <VBox alignment="CENTER" layoutX="-1.0" layoutY="1.0" prefHeight="317.0" prefWidth="600.0">
                             <children>
-                        <ImageView fx:id="hospitalimg" fitHeight="90.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
-                            <image><Image url="@vetsymbol.jpg" /></image>
+                                <ImageView fx:id="hospitalimg" fitHeight="90.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
+                                    <image><Image url="@vetsymbol.jpg" /></image>
                                 </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24pt; -fx-font-family: Helvetica;" text="Login" textAlignment="CENTER" wrappingWidth="102.6201171875">
-                           <font>
-                              <Font name="Impact" size="15.0" />
-                           </font></Text>
-                        <TextField fx:id="usernameField" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
-                           <VBox.margin>
-                              <Insets bottom="12.5" left="100" right="100" top="25" />
-                           </VBox.margin></TextField>
-                        <TextField fx:id="passwordField" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
-                            <VBox.margin>
-                                <Insets left="100" right="100" top="12.5" />
-                            </VBox.margin>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24pt; -fx-font-family: Helvetica;" text="Login" textAlignment="CENTER" wrappingWidth="102.6201171875">
+                                    <font>
+                                        <Font name="Impact" size="15.0" />
+                                    </font></Text>
+                                <TextField fx:id="usernameField" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
+                                    <VBox.margin>
+                                        <Insets bottom="12.5" left="100" right="100" top="25" />
+                                    </VBox.margin></TextField>
+                                <TextField fx:id="passwordField" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
+                                    <VBox.margin>
+                                        <Insets left="100" right="100" top="12.5" />
+                                    </VBox.margin>
                                 </TextField>
-                        <Button fx:id="loginB" mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
-                            <VBox.margin>
-                                <Insets left="100" right="100" top="12.5" />
-                            </VBox.margin>
+                                <Button fx:id="loginB" mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
+                                    <VBox.margin>
+                                        <Insets left="100" right="100" top="12.5" />
+                                    </VBox.margin>
                                 </Button>
                             </children>
                         </VBox>

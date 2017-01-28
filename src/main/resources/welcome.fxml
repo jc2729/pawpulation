@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <SplitPane fx:id="splitPane" dividerPositions="0.1934673366834171" layoutX="-1.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
         <items>
@@ -23,11 +23,11 @@
                               <Pane HBox.hgrow="ALWAYS" />
                               <MenuButton fx:id="importB" mnemonicParsing="false" text="Import">
                                 <items>
-                                  <MenuItem fx:id="importTextFile" mnemonicParsing="false" onAction="#handleImportTextFileAction" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                  <MenuItem fx:id="importTextFile" mnemonicParsing="false" onAction="#handleImportTextFileAction" text="Text File" />
+                                  <MenuItem mnemonicParsing="false" text="Kek" />
                                 </items>
                               </MenuButton>
-                              <Button fx:id="settings" mnemonicParsing="false">
+                              <Button fx:id="settingsB" mnemonicParsing="false">
                               <graphic>
                                   <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                                       <image>

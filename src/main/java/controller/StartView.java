@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 
 public class StartView extends Application {
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/welcome.fxml"));
-        SplitPane root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+        final Parent root = loader.load();
         ((LoginController) loader.getController()).setStage(stage);
         Scene scene = new Scene(root);
         stage.setScene(scene);

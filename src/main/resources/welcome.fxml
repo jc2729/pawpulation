@@ -40,30 +40,30 @@
                         <ToolBar fx:id="topTool" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #B0DBEE;">
                            <items>
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="zip" onMouseClicked="#onZipPressed" onMouseDragEntered="#onZipPressed" prefHeight="31.0" prefWidth="108.0" promptText="Zipcode" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="zip" onMouseClicked="#onZipPressed" prefHeight="31.0" prefWidth="108.0" promptText="Zipcode" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
                               <ComboBox fx:id="species" onMouseClicked="#onSpeciesPressed" prefHeight="31.0" prefWidth="108.0" promptText="Species" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="disease" onMouseDragEntered="#onDiseasePressed" prefHeight="31.0" prefWidth="148.0" promptText="Disease Type" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="disease" onMouseClicked="#onDiseasePressed" prefHeight="31.0" prefWidth="148.0" promptText="Disease Type" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="test" onMouseDragEntered="#onTestPressed" prefHeight="31.0" prefWidth="120.0" promptText="Test Type" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="test" onMouseClicked="#onTestPressed" prefHeight="31.0" prefWidth="120.0" promptText="Test Type" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
                            </items>
                         </ToolBar>
                         <ToolBar prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #B0DBEE;">
                            <items>
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox onMouseDragEntered="#onMinMonthPressed" prefHeight="31.0" prefWidth="138.0" promptText="Start Month" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="startMonth" onMouseClicked="#onMinMonthPressed" prefHeight="31.0" prefWidth="138.0" promptText="Start Month" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox onMouseDragEntered="#onMinYearPressed" prefHeight="31.0" prefWidth="117.0" promptText="Start Year" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="startYear" onMouseClicked="#onMinYearPressed" prefHeight="31.0" prefWidth="117.0" promptText="Start Year" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS">
                                  <children>
                                     <Text layoutX="5.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
                                  </children>
                               </Pane>
-                              <ComboBox onMouseDragEntered="#onMaxMonthPressed" prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
+                              <ComboBox onMouseClicked="#onMaxMonthPressed" prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox onMouseDragEntered="#onMaxYearPressed" prefHeight="31.0" prefWidth="116.0" promptText="End Year" style="-fx-background-color: #559FBF;" />
+                              <ComboBox onMouseClicked="#onMaxYearPressed" prefHeight="31.0" prefWidth="116.0" promptText="End Year" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
                            </items>
                         </ToolBar>

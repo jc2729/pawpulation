@@ -1,6 +1,7 @@
 
 package database;
 
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
@@ -21,7 +22,8 @@ public class Database {
 	}
 
 	public JsonArray export(JsonObject elem) {
-		PriorityQueue<JsonObject> filtered = new PriorityQueue();
+		Comparator comparator = new DateComparator();
+		PriorityQueue<JsonObject> filtered = new PriorityQueue(15, comparator);
 		boolean zip = elem.has("zip");
 		boolean species = elem.has("species");
 		boolean disease = elem.has("disease");
@@ -140,5 +142,16 @@ public class Database {
 			resultsArray.add(result);
 		}
 		return resultsArray;
+	}
+
+	class DateComparator implements Comparator {
+		public int compare(Object o1, Object o2) {
+			return new Integer(((JsonObject) o1).get("date").getAsInt())
+					.compareTo(new Integer(((JsonObject) o2).get("date").getAsInt()));
+		}
+
+		public boolean equals(Object o1) {
+			return false; // not supported
+		}
 	}
 }

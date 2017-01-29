@@ -74,7 +74,7 @@
                   </VBox>
                   <Button fx:id="exportB" layoutX="519.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleExport" style="-fx-background-color: #559FBF;" text="Export" />
                   <Text fx:id="textresult" layoutX="287.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="32.0" />
-                  <Button layoutX="277.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleSearchButton" text="Search" />
+                  <Button layoutX="277.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleSearchButton" style="-fx-background-color: #559FBF;" text="Search" />
                </children>
             </AnchorPane>
         </items>

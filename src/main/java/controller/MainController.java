@@ -105,29 +105,30 @@ public class MainController extends Controller {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Import File");
 		File file = fileChooser.showOpenDialog(splitPane.getScene().getWindow());
-
-		// parse file into JSON object
-		JsonParser parser = new JsonParser();
-		try {
-			JsonArray jsonArray = (JsonArray) parser.parse(new FileReader(file));
-			URL url = new URL("http://" + baseURL + "/import");
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
-			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-Type", "application/json");
-			PrintWriter w = new PrintWriter(connection.getOutputStream());
-			w.println(jsonArray);
-			w.flush();
-			connection.getResponseCode();
-		} catch (JsonIOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonSyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (file != null) {
+			// parse file into JSON object
+			JsonParser parser = new JsonParser();
+			try {
+				JsonArray jsonArray = (JsonArray) parser.parse(new FileReader(file));
+				URL url = new URL("http://" + baseURL + "/import");
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				connection.setDoOutput(true);
+				connection.setRequestMethod("POST");
+				connection.setRequestProperty("Content-Type", "application/json");
+				PrintWriter w = new PrintWriter(connection.getOutputStream());
+				w.println(jsonArray);
+				w.flush();
+				connection.getResponseCode();
+			} catch (JsonIOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonSyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

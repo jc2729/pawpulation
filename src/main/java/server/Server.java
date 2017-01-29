@@ -58,7 +58,7 @@ public class Server {
 			return db.retrieveSummary(parser.parse(request.body()).getAsJsonObject());
 		});
 
-		get("/export", (request, response) -> {
+		post("/export", (request, response) -> {
 			response.header("Content-Type", "application/json");
 			response.status(200);
 			return db.export(parser.parse(request.body()).getAsJsonObject());

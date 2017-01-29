@@ -40,7 +40,7 @@ import javafx.scene.text.*;
 public class MainController extends Controller {
     private Stage mainStage;
 
-    private static String fileLoc = "results.csv";
+    private static String fileLoc = "src/main/resources/results.csv";
     private JsonObject searchInfo;
     // fields for fxml elements
     @FXML
@@ -409,7 +409,7 @@ public class MainController extends Controller {
     @FXML
     private void handleExport(ActionEvent event) {
         try {
-            URL url = new URL("http://" + baseURL + "/login");
+            URL url = new URL("http://" + baseURL + "/export");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("GET");
@@ -419,9 +419,10 @@ public class MainController extends Controller {
             output.write(searchInfo.toString());
             output.flush();
             connection.connect();
-            if (connection.getResponseCode() == 201) {
+            if (connection.getResponseCode() == 200) {
                 BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 JsonArray arr = new Gson().fromJson(r, JsonArray.class);
+                System.out.println("a");
 
                 StringBuilder res = new StringBuilder();
                 res.append("Date,");

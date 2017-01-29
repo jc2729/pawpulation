@@ -34,6 +34,54 @@ public class Database {
 		maxYear = "2018";
 	}
 
+	public Set getZipCodes() {
+		try {
+			readLock.lock();
+			return zipCodes;
+		} finally {
+			readLock.unlock();
+		}
+	}
+
+	public Set getSpecies() {
+		try {
+			readLock.lock();
+			return species;
+
+		} finally {
+			readLock.unlock();
+		}
+	}
+
+	public Set getTestTypes() {
+		try {
+			readLock.lock();
+			return testTypes;
+		}
+
+		finally {
+			readLock.unlock();
+		}
+	}
+
+	public String getMinYear() {
+		try {
+			readLock.lock();
+			return minYear;
+		} finally {
+			readLock.unlock();
+		}
+	}
+
+	public String getMaxYear() {
+		try {
+			readLock.lock();
+			return maxYear;
+		} finally {
+			readLock.unlock();
+		}
+	}
+
 	public void add(JsonObject elem) {
 		String date = elem.get("date").toString();
 		writeLock.lock();

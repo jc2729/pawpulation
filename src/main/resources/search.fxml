@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,29 +11,32 @@
       <ToolBar fx:id="topTool" layoutY="69.0" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #B0DBEE;">
         <items>
             <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="108.0" promptText="Zipcode" style="-fx-background-color: #559FBF;" />
+            <ComboBox fx:id="zip" prefHeight="31.0" prefWidth="108.0" promptText="Zipcode" style="-fx-background-color: #559FBF;" />
             <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="108.0" promptText="Species" style="-fx-background-color: #559FBF;" />
+            <ComboBox fx:id="species" prefHeight="31.0" prefWidth="108.0" promptText="Species" style="-fx-background-color: #559FBF;" />
             <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="148.0" promptText="Disease Type" style="-fx-background-color: #559FBF;" />
+            <ComboBox fx:id="disease" prefHeight="31.0" prefWidth="148.0" promptText="Disease Type" style="-fx-background-color: #559FBF;" />
             <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="120.0" promptText="Test Type" style="-fx-background-color: #559FBF;" />
+            <ComboBox fx:id="test" prefHeight="31.0" prefWidth="120.0" promptText="Test Type" style="-fx-background-color: #559FBF;" />
             <Pane HBox.hgrow="ALWAYS" />
         </items>
       </ToolBar>
       <ToolBar layoutY="114.0" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #B0DBEE;">
         <items>
             <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="138.0" promptText="Start Month" style="-fx-background-color: #559FBF;" />
+            <ComboBox fx:id="startMonth" prefHeight="31.0" prefWidth="138.0" promptText="Start Month" style="-fx-background-color: #559FBF;" />
             <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="117.0" promptText="Start Day" style="-fx-background-color: #559FBF;" />
+            <ComboBox fx:id="startYear" prefHeight="31.0" prefWidth="117.0" promptText="Start Year" style="-fx-background-color: #559FBF;" />
+            <Pane HBox.hgrow="ALWAYS">
+               <children>
+                  <Text layoutX="5.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
+               </children></Pane>
+            <ComboBox fx:id="endMonth" prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
             <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
-            <Pane HBox.hgrow="ALWAYS" />
-            <ComboBox prefHeight="31.0" prefWidth="116.0" promptText="End Day" style="-fx-background-color: #559FBF;" />
+            <ComboBox fx:id="endYear" prefHeight="31.0" prefWidth="116.0" promptText="End Year" style="-fx-background-color: #559FBF;" />
             <Pane HBox.hgrow="ALWAYS" />
         </items>
       </ToolBar>
-      <Text layoutX="110.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search the Database With the Following Filters" textAlignment="CENTER" />
+      <Text layoutX="245.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search the database!" textAlignment="CENTER" />
    </children>
 </AnchorPane>

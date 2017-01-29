@@ -231,16 +231,16 @@ public class MainController extends Controller {
 
     @FXML
     private void onDiseasePressed(MouseEvent event) {
-        this.disease.getItems().add("Lyme");
-        this.disease.getItems().add("Anaplasma");
-        this.disease.getItems().add("Heartworm");
-        this.disease.getItems().add("Leptospirosis");
-        this.disease.getItems().add("Dilated cardiomyopathy");
-        this.disease.getItems().add("Osteosarcoma");
-        this.disease.getItems().add("Toxoplasma");
-        this.disease.getItems().add("Hypertrophic cardiomyopathy");
-        this.disease.getItems().add("Plumbism");
-        this.disease.getItems().add("Malignt narcissism");
+        this.disease.getItems().add("lyme");
+        this.disease.getItems().add("anaplasma");
+        this.disease.getItems().add("heartworm");
+        this.disease.getItems().add("leptospirosis");
+        this.disease.getItems().add("dilated cardiomyopathy");
+        this.disease.getItems().add("osteosarcoma");
+        this.disease.getItems().add("toxoplasma");
+        this.disease.getItems().add("malignant narcissism");
+        this.disease.getItems().add("hypertrophic cardiomyopathy");
+        this.disease.getItems().add("plumbism");
     }
 
     @FXML
@@ -349,6 +349,11 @@ public class MainController extends Controller {
                 search.addProperty("species", species.getValue());
             if (disease.getValue() != null)
                 search.addProperty("disease", disease.getValue());
+            else {
+                Alert a = new Alert(AlertType.ERROR, "Please choose a disease type.");
+                a.showAndWait();
+                return;
+            }
             if (test.getValue() != null)
                 search.addProperty("test", test.getValue());
 
@@ -398,9 +403,6 @@ public class MainController extends Controller {
             System.out.println(e.getMessage());
         }
         // TODO refresh the page
-
-        
-
 
     }
 

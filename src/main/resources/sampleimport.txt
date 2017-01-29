@@ -2,6 +2,6 @@
      { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "pos", "date": "20170128", "test": "asdf"},
      { "zip": "14850", "species": "cat", "disease": "lyme", "tested": "neg", "date": "20170120", "test": "asdfadsf"},
      { "zip": "14853", "species": "squirrel", "disease": "rabies", "tested": "pos", "date": "20170128", "test": "asdfadg"},
-     { "zip": "14853", "species": "squirrel", "disease": "rabies", "tested": "pos", "date": "20170128", "test": "asdfg"}
-     
+     { "zip": "14853", "species": "squirrel", "disease": "rabies", "tested": "pos", "date": "20170128", "test": "asdfg"},
+     { "zip": "14853", "species": “dog”, "disease": “anaplasma”, "tested": “pos”, "date": "20170126”, "test": ""}
  ]

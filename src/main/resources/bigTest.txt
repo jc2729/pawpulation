@@ -1,0 +1,14 @@
+[
+     { "zip": "48302", "species": "charzard", "disease": "rabies", "tested": "pos", "date": "20160327", "test": "40X"},
+     { "zip": "12809", "species": "cat", "disease": "hypertrophic cardiomyopathy", "tested": "neg", "date": "20170120", "test": "40X"},
+     { "zip": "95129", "species": "dog", "disease": "leptospirosis", "tested": "pos", "date": "20150108", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "neg", "date": "20170128", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "neg", "date": "20170128", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "anaplasma", "tested": "pos", "date": "20170128", "test": "40X"},
+ 		{ "zip": "14853", "species": "dog", "disease": "anaplasma", "tested": "neg", "date": "20170128", "test": "40X"},
+      { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "pos", "date": "20170127", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "neg", "date": "20170127", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "anaplasma", "tested": "pos", "date": "20170127", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "pos", "date": "20170125", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "neg", "date": "20170126", "test": "40X"},
+     { "zip": "14853", "species": "dog", "disease": "anaplasma", "tested": "pos", "date": "20170126", "test": "40X"} ]

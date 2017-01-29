@@ -24,14 +24,12 @@ public class Database {
 	Set<String> species;
 	Set<String> testTypes;
 	String minYear;
-	String maxYear;
 
 	public Database() {
 		data = new Hashtable<String, JsonObject>();
 		zipCodes = new TreeSet<String>();
 		species = new TreeSet<String>();
 		minYear = "2018";
-		maxYear = "2018";
 	}
 
 	public Set getZipCodes() {
@@ -72,25 +70,13 @@ public class Database {
 			readLock.unlock();
 		}
 	}
-
-	public String getMaxYear() {
-		try {
-			readLock.lock();
-			return maxYear;
-		} finally {
-			readLock.unlock();
-		}
-	}
-
+	
 	public void add(JsonObject elem) {
 		String date = elem.get("date").toString();
 		writeLock.lock();
 		data.put(date.toString(), elem);
 		if (Integer.valueOf(date.substring(0, 4)) < Integer.valueOf(minYear)) {
 			minYear = date.substring(0, 4);
-		}
-		if (Integer.valueOf(date.substring(0, 4)) > Integer.valueOf(maxYear)) {
-			maxYear = date.substring(0, 4);
 		}
 		zipCodes.add(elem.get("zip").toString());
 		species.add(elem.get("species").toString());

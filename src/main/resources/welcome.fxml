@@ -61,9 +61,9 @@
                                     <Text layoutX="5.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
                                  </children>
                               </Pane>
-                              <ComboBox onMouseClicked="#onMaxMonthPressed" prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="endMonth" onMouseClicked="#onMaxMonthPressed" prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox onMouseClicked="#onMaxYearPressed" prefHeight="31.0" prefWidth="116.0" promptText="End Year" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="endYear" onMouseClicked="#onMaxYearPressed" prefHeight="31.0" prefWidth="116.0" promptText="End Year" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
                            </items>
                         </ToolBar>

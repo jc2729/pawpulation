@@ -40,13 +40,13 @@
                         <ToolBar fx:id="topTool" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #B0DBEE;">
                            <items>
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="zip" prefHeight="31.0" prefWidth="108.0" promptText="Zipcode" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="zip" onAction="#onZipPressed" prefHeight="31.0" prefWidth="108.0" promptText="Zipcode" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="species" prefHeight="31.0" prefWidth="108.0" promptText="Species" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="species" onAction="#onSpeciesPressed" prefHeight="31.0" prefWidth="108.0" promptText="Species" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="disease" prefHeight="31.0" prefWidth="148.0" promptText="Disease Type" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="disease" onAction="#onDiseasePressed" prefHeight="31.0" prefWidth="148.0" promptText="Disease Type" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="test" prefHeight="31.0" prefWidth="120.0" promptText="Test Type" style="-fx-background-color: #559FBF;" />
+                              <ComboBox fx:id="test" onAction="#onTestPressed" prefHeight="31.0" prefWidth="120.0" promptText="Test Type" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
                            </items>
                         </ToolBar>

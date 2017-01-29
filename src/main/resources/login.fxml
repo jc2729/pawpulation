@@ -30,15 +30,11 @@
                                     <font>
                                         <Font name="Impact" size="15.0" />
                                     </font></Text>
-                                <TextField fx:id="usernameField" prefHeight="31.0" prefWidth="351.0" promptText="Username" style="-fx-text-alignment: center;">
+                                <TextField fx:id="usernameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="350.0" promptText="Username" style="-fx-text-alignment: center;">
                                     <VBox.margin>
                                         <Insets bottom="12.5" left="100" right="100" top="25" />
                                     </VBox.margin></TextField>
-                                <TextField fx:id="passwordField" prefHeight="31.0" prefWidth="351.0" promptText="Password" style="-fx-text-alignment: center;">
-                                    <VBox.margin>
-                                        <Insets left="100" right="100" top="12.5" />
-                                    </VBox.margin>
-                                </TextField>
+                        <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="350.0" promptText="Password" />
                                 <Button fx:id="loginB" mnemonicParsing="false" onAction="#handleLoginButton" style="-fx-background-color: #559FBF;" text="Login">
                                     <VBox.margin>
                                         <Insets left="100" right="100" top="12.5" />

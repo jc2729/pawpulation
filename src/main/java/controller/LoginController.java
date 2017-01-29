@@ -32,7 +32,7 @@ public class LoginController extends Controller {
 	private TextField usernameField;
 
 	@FXML
-	private TextField passwordField;
+	private PasswordField passwordField;
 
 	// Username field
 	// Password field

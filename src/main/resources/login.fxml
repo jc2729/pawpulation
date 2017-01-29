@@ -13,15 +13,19 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #559FBF;">
                     <children>
-                        <ImageView fx:id="logo" fitHeight="73.0" fitWidth="308.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="logo" fitHeight="73.0" fitWidth="308.0" layoutX="98.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@logo.png" /> </image> <image> <Image url="@pawpulation.png" /> </image>
+                        </ImageView>
+                  <ImageView fitHeight="73.0" fitWidth="98.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@logo.png" />
+                     </image>
+                  </ImageView>
                     </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #B0DBEE;">
                     <children>
                         <VBox alignment="CENTER" layoutX="-1.0" layoutY="1.0" prefHeight="317.0" prefWidth="600.0">
                             <children>
-                                <ImageView fx:id="hospitalimg" fitHeight="90.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@vetsymbol.jpg" /></image>
-                                </ImageView>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24pt; -fx-font-family: Helvetica;" text="Login" textAlignment="CENTER" wrappingWidth="102.6201171875">
                                     <font>
                                         <Font name="Impact" size="15.0" />
@@ -35,7 +39,7 @@
                                         <Insets left="100" right="100" top="12.5" />
                                     </VBox.margin>
                                 </TextField>
-                                <Button fx:id="loginB" mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
+                                <Button fx:id="loginB" mnemonicParsing="false" onAction="#handleLoginButton" style="-fx-background-color: #559FBF;" text="Login">
                                     <VBox.margin>
                                         <Insets left="100" right="100" top="12.5" />
                                     </VBox.margin>

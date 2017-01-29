@@ -19,6 +19,9 @@ import com.google.gson.JsonSyntaxException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -83,10 +86,9 @@ public class MainController extends Controller {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             PrintWriter w = new PrintWriter(connection.getOutputStream());
-            for ( JsonElement obj : jsonArray ) {
-                w.println((JsonObject) obj);
-            }
+            w.println(jsonArray);
             w.flush();
+            connection.getResponseCode();
         } catch (JsonIOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -97,15 +99,17 @@ public class MainController extends Controller {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-        
-        // submit POST request
     }
 
     @FXML
-    private void handleSearchAction(ActionEvent event) {
+    private void handleSearchAction(ActionEvent event) throws IOException {
         // make search pane visible
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/search.fxml"));
+        final Parent root = loader.load();
+        ((SearchController) loader.getController()).setStage(mainStage);
+        Scene scene = new Scene(root);
+        mainStage.setScene(scene);
+        mainStage.show();
         // pass control to SearchController
     }
 

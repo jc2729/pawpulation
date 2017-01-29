@@ -153,7 +153,7 @@ public class Database {
 	}
 
 	public JsonArray retrieveSummary(JsonObject elem) {
-		PriorityQueue<JsonObject> filtered = new PriorityQueue();
+		PriorityQueue<JsonObject> filtered = new PriorityQueue(15, new DateComparator());
 		boolean zip = elem.has("zip");
 		boolean species = elem.has("species");
 		boolean disease = elem.has("disease");

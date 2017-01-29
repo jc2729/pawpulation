@@ -93,58 +93,7 @@ public class Database {
 	}
 
 	public JsonArray export(JsonObject elem) {
-		Comparator comparator = new DateComparator();
-		PriorityQueue<JsonObject> filtered = new PriorityQueue<JsonObject>(15, comparator);
-		boolean zip = elem.has("zip");
-		boolean species = elem.has("species");
-		boolean disease = elem.has("disease");
-		boolean tested = elem.has("tested");
-		boolean date = elem.has("startDate") && elem.has("endDate");
-		boolean test = elem.has("test");
-
-		readLock.lock();
-		for (JsonObject dataPoint : data) {
-			if (zip) {
-				if (elem.get("zip").equals(dataPoint.get("zip"))) {
-					filtered.add(dataPoint);
-				} else {
-					filtered.remove(dataPoint);
-				}
-			}
-			if (species)
-				if (elem.get("species").equals(dataPoint.get("species"))) {
-					filtered.add(dataPoint);
-				} else {
-					filtered.remove(dataPoint);
-				}
-			if (disease)
-				if (elem.get("disease").equals(dataPoint.get("disease"))) {
-					filtered.add(dataPoint);
-				} else if (disease) {
-					filtered.remove(dataPoint);
-				}
-			if (tested)
-				if (elem.get("tested").equals(dataPoint.get("tested"))) {
-					filtered.add(dataPoint);
-				} else if (tested) {
-					filtered.remove(dataPoint);
-				}
-			if (date)
-				if (elem.get("startDate").getAsInt() < dataPoint.get("date").getAsInt()
-						&& elem.get("endDate").getAsInt() > dataPoint.get("date").getAsInt()) {
-					filtered.add(dataPoint);
-				} else if (date) {
-					filtered.remove(dataPoint);
-				}
-			if (zip)
-				if (elem.get("test").equals(dataPoint.get("test"))) {
-					filtered.add(dataPoint);
-				} else if (test) {
-					filtered.remove(dataPoint);
-				}
-
-		}
-		readLock.unlock();
+		PriorityQueue<JsonObject> filtered = filter(elem);
 		JsonArray filteredArray = new JsonArray();
 		while (!filtered.isEmpty()) {
 			filteredArray.add(filtered.poll());
@@ -153,6 +102,23 @@ public class Database {
 	}
 
 	public JsonArray retrieveSummary(JsonObject elem) {
+		PriorityQueue<JsonObject> filtered = filter(elem);
+		int[] results = new int[2];
+		while (!filtered.isEmpty()) {
+			if (filtered.poll().get("tested").getAsString().equals("pos")) {
+				results[0]++;
+			} else {
+				results[1]++;
+			}
+		}
+		JsonArray resultsArray = new JsonArray();
+		for (int result : results) {
+			resultsArray.add(result);
+		}
+		return resultsArray;
+	}
+	
+	private PriorityQueue<JsonObject> filter(JsonObject elem){
 		PriorityQueue<JsonObject> filtered = new PriorityQueue(15, new DateComparator());
 		boolean zip = elem.has("zip");
 		boolean species = elem.has("species");
@@ -160,7 +126,6 @@ public class Database {
 		boolean tested = elem.has("tested");
 		boolean date = elem.has("date");
 		boolean test = elem.has("test");
-		int[] results = new int[2];
 		readLock.lock();
 		for(JsonObject dataPoint : data){
 			filtered.add(dataPoint);
@@ -194,21 +159,10 @@ public class Database {
 				if (!elem.get("test").equals(dataPoint.get("test"))) {
 					filtered.remove(dataPoint);
 				}
-
+	
 		}
 		readLock.unlock();
-		while (!filtered.isEmpty()) {
-			if (filtered.poll().get("tested").getAsString().equals("pos")) {
-				results[0]++;
-			} else {
-				results[1]++;
-			}
-		}
-		JsonArray resultsArray = new JsonArray();
-		for (int result : results) {
-			resultsArray.add(result);
-		}
-		return resultsArray;
+		return filtered;
 	}
 
 	class DateComparator implements Comparator {

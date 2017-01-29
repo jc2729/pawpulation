@@ -53,17 +53,17 @@
                         <ToolBar prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #B0DBEE;">
                            <items>
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox onMouseDragEntered="#startMonth" prefHeight="31.0" prefWidth="138.0" promptText="Start Month" style="-fx-background-color: #559FBF;" />
+                              <ComboBox onMouseDragEntered="#onMinMonthPressed" prefHeight="31.0" prefWidth="138.0" promptText="Start Month" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox onMouseDragEntered="#startYear" prefHeight="31.0" prefWidth="117.0" promptText="Start Year" style="-fx-background-color: #559FBF;" />
+                              <ComboBox onMouseDragEntered="#onMinYearPressed" prefHeight="31.0" prefWidth="117.0" promptText="Start Year" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS">
                                  <children>
                                     <Text layoutX="5.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
                                  </children>
                               </Pane>
-                              <ComboBox onMouseDragEntered="#endMonth" prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
+                              <ComboBox onMouseDragEntered="#onMaxMonthPressed" prefHeight="31.0" prefWidth="132.0" promptText="End Month" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <ComboBox onMouseDragEntered="#endYear" prefHeight="31.0" prefWidth="116.0" promptText="End Year" style="-fx-background-color: #559FBF;" />
+                              <ComboBox onMouseDragEntered="#onMaxYearPressed" prefHeight="31.0" prefWidth="116.0" promptText="End Year" style="-fx-background-color: #559FBF;" />
                               <Pane HBox.hgrow="ALWAYS" />
                            </items>
                         </ToolBar>

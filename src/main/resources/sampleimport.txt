@@ -1,5 +1,7 @@
  [
      { "zip": "14853", "species": "dog", "disease": "lyme", "tested": "pos", "date": "20170128", "test": ""},
      { "zip": "14850", "species": "cat", "disease": "lyme", "tested": "neg", "date": "20170120", "test": ""},
+     { "zip": "14853", "species": "squirrel", "disease": "rabies", "tested": "pos", "date": "20170128", "test": ""},
      { "zip": "14853", "species": "squirrel", "disease": "rabies", "tested": "pos", "date": "20170128", "test": ""}
+     
  ]

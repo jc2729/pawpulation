@@ -23,6 +23,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -140,7 +141,8 @@ public class MainController extends Controller {
 	}
 
 	@FXML
-	public void onZipPressed(ActionEvent event) {
+	public void onZipPressed(MouseEvent event) {
+		System.out.println("on zip pressed");
 		JsonObject zip = new JsonObject();
 		zip.addProperty("zip", "");
 
@@ -149,6 +151,7 @@ public class MainController extends Controller {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("GET");
+			System.out.println("sending request");
 			PrintWriter w = new PrintWriter(connection.getOutputStream());
 			w.println(zip);
 			w.flush();
@@ -171,7 +174,7 @@ public class MainController extends Controller {
 	}
 
 	@FXML
-	public void onSpeciesPressed(ActionEvent event) {
+	public void onSpeciesPressed(MouseEvent event) {
 		JsonObject species = new JsonObject();
 		species.addProperty("species", "");
 
@@ -202,7 +205,7 @@ public class MainController extends Controller {
 	}
 
 	@FXML
-	public void onMinYearPressed(ActionEvent event) {
+	public void onMinYearPressed(MouseEvent event) {
 		JsonObject minYear = new JsonObject();
 		minYear.addProperty("date", "");
 
@@ -236,7 +239,7 @@ public class MainController extends Controller {
 	}
 	
 	@FXML
-	private void onDiseasePressed(ActionEvent event){
+	private void onDiseasePressed(MouseEvent event){
 		this.disease.getItems().add("Lyme");
 		this.disease.getItems().add("Anaplasma");
 		this.disease.getItems().add("Heartworm");
@@ -248,7 +251,7 @@ public class MainController extends Controller {
 	}
 	
 	@FXML
-	private void onTestPressed(ActionEvent event){
+	private void onTestPressed(MouseEvent event){
 		JsonObject test = new JsonObject();
 		test.addProperty("test", "");
 
@@ -278,7 +281,7 @@ public class MainController extends Controller {
 	}
 	
 	@FXML
-	private void onMinMonthPressed(ActionEvent event){
+	private void onMinMonthPressed(MouseEvent event){
 		for(int i = 1; i <=12; i++){
 			if(i < 10){
 				this.startMonth.getItems().add("0" + i);
@@ -289,7 +292,7 @@ public class MainController extends Controller {
 	}
 	
 	@FXML
-	private void onMaxMonthPressed(ActionEvent event){
+	private void onMaxMonthPressed(MouseEvent event){
 		for(int i = 1; i <=12; i++){
 			if(i < 10){
 				this.endMonth.getItems().add("0" + i);
@@ -300,7 +303,7 @@ public class MainController extends Controller {
 	}
 	
 	@FXML
-	private void onMaxYearPressed(ActionEvent event){
+	private void onMaxYearPressed(MouseEvent event){
 		JsonObject maxYear = new JsonObject();
 		maxYear.addProperty("date", "");
 

@@ -65,10 +65,12 @@ public class Server {
         });
 
         get("/populate", (request, response) -> {
+        	System.out.println("in request");
             response.header("Content-Type", "application/json");
             response.status(201);
             JsonObject obj = parser.parse(request.body()).getAsJsonObject();
             if (obj.has("zip")) {
+            	System.out.println("got request");
                 Set<String> zipCodes = db.getZipCodes();
                 JsonArray zipJson = new JsonArray();
                 for (String zip : zipCodes) {

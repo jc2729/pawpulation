@@ -73,8 +73,6 @@ public class MainController extends Controller {
     @FXML
     ComboBox<String> test;
 
-    @FXML
-    ComboBox<String> testResult;
 
     @FXML
     ComboBox<String> startMonth;
@@ -148,15 +146,6 @@ public class MainController extends Controller {
 
     }
 
-    public void updateView() {
-
-    }
-
-    @Override
-    public void setView(View view) {
-        // TODO Auto-generated method stub
-
-    }
 
     public void handleOk(ActionEvent event) {
 
@@ -176,8 +165,6 @@ public class MainController extends Controller {
                 search.addProperty("disease", disease.getValue());
             if (test.getValue() != null)
                 search.addProperty("test", test.getValue());
-            if (testResult.getValue() != null)
-                search.addProperty("tested", testResult.getValue());
 
             StringBuilder startDate = new StringBuilder();
             if (startYear.getValue() != null)

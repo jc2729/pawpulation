@@ -30,7 +30,7 @@
                </children></AnchorPane>
           <AnchorPane fx:id="bottomPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #B0DBEE;">
                <children>
-                  <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="-2.0" prefHeight="320.0" prefWidth="600.0">
+                  <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="-2.0" prefHeight="127.0" prefWidth="600.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Search the database!" textAlignment="CENTER" wrappingWidth="390.6708984375">
                            <font>
@@ -72,6 +72,8 @@
                         <Insets top="20.0" />
                      </padding>
                   </VBox>
+                  <Button fx:id="export" layoutX="519.0" layoutY="275.0" mnemonicParsing="false" style="-fx-background-color: #559FBF;" text="Export" />
+                  <Text fx:id="textresult" layoutX="287.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="32.0" />
                </children>
             </AnchorPane>
         </items>

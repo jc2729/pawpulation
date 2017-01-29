@@ -3,6 +3,7 @@ package database;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 import java.util.Set;
@@ -42,14 +43,15 @@ public class Database {
         testTypes.add(elem.get("test").toString());
     }
 
-    public JsonArray export(JsonObject elem) {
-        PriorityQueue<JsonObject> filtered = new PriorityQueue();
-        boolean zip = elem.has("zip");
-        boolean species = elem.has("species");
-        boolean disease = elem.has("disease");
-        boolean tested = elem.has("lyme");
-        boolean date = elem.has("startDate") && elem.has("endDate");
-        boolean test = elem.has("test");
+	public JsonArray export(JsonObject elem) {
+		Comparator comparator = new DateComparator();
+		PriorityQueue<JsonObject> filtered = new PriorityQueue(15, comparator);
+		boolean zip = elem.has("zip");
+		boolean species = elem.has("species");
+		boolean disease = elem.has("disease");
+		boolean tested = elem.has("tested");
+		boolean date = elem.has("startDate") && elem.has("endDate");
+		boolean test = elem.has("test");
 
         for (JsonObject dataPoint : data.values()) {
             if (zip) {
@@ -150,17 +152,28 @@ public class Database {
 
         }
 
-        while (!filtered.isEmpty()) {
-            if (filtered.poll().get("tested").equals("pos")) {
-                results[0]++;
-            } else {
-                results[1]++;
-            }
-        }
-        JsonArray resultsArray = new JsonArray();
-        for (int result : results) {
-            resultsArray.add(result);
-        }
-        return resultsArray;
-    }
+		while (!filtered.isEmpty()) {
+			if (filtered.poll().get("tested").equals("pos")) {
+				results[0]++;
+			} else {
+				results[1]++;
+			}
+		}
+		JsonArray resultsArray = new JsonArray();
+		for (int result : results) {
+			resultsArray.add(result);
+		}
+		return resultsArray;
+	}
+
+	class DateComparator implements Comparator {
+		public int compare(Object o1, Object o2) {
+			return new Integer(((JsonObject) o1).get("date").getAsInt())
+					.compareTo(new Integer(((JsonObject) o2).get("date").getAsInt()));
+		}
+
+		public boolean equals(Object o1) {
+			return false; // not supported
+		}
+	}
 }

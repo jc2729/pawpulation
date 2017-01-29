@@ -10,6 +10,7 @@ import javafx.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 public class SearchController extends Controller {
 	@FXML
@@ -78,4 +79,9 @@ public class SearchController extends Controller {
 		// TODO refresh the page
 
 	}
+
+    public void setStage(Stage mainStage) {
+        // TODO Auto-generated method stub
+        
+    }
 }

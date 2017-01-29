@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -41,7 +42,7 @@ public class MainController extends Controller {
 
     @FXML
     private Button settingsB;
-    
+
     @FXML
     private MenuItem importTextFile;
 
@@ -53,12 +54,40 @@ public class MainController extends Controller {
 
     @FXML
     private AnchorPane bottomPane;
-    
+
     @FXML
     private ImageView welcome;
 
+    @FXML
+    ComboBox<String> zip;
+
+    @FXML
+    ComboBox<String> species;
+
+    @FXML
+    ComboBox<String> disease;
+
+    @FXML
+    ComboBox<String> test;
+
+    @FXML
+    ComboBox<String> testResult;
+
+    @FXML
+    ComboBox<String> startMonth;
+
+    @FXML
+    ComboBox<String> startYear;
+
+    @FXML
+    ComboBox<String> endMonth;
+
+    @FXML
+    ComboBox<String> endYear;
+
     /**
      * Set stage for main controller.
+     * 
      * @param stage
      */
     public void setStage(Stage stage) {
@@ -67,7 +96,8 @@ public class MainController extends Controller {
 
     /**
      * Presents a file chooser and loads file
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     @FXML
     private void handleImportTextFileAction(ActionEvent event) throws IOException {
@@ -101,36 +131,17 @@ public class MainController extends Controller {
         }
     }
 
-    @FXML
-    private void handleSearchAction(ActionEvent event) throws IOException {
-        // make search pane visible
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/search.fxml"));
-        final Parent root = loader.load();
-        ((SearchController) loader.getController()).setStage(mainStage);
-        Scene scene = new Scene(root);
-        mainStage.setScene(scene);
-        mainStage.show();
-        // pass control to SearchController
-    }
+    /*
+     * @FXML private void handleSearchAction(ActionEvent event) throws
+     * IOException { // make search pane visible FXMLLoader loader = new
+     * FXMLLoader(getClass().getResource("/search.fxml")); final Parent root =
+     * loader.load(); ((SearchController)
+     * loader.getController()).setStage(mainStage); Scene scene = new
+     * Scene(root); mainStage.setScene(scene); mainStage.show(); }
+     */
 
     @FXML
     private void handleSettingsAction(ActionEvent event) {
-
-    }
-
-    /**
-     * Parse file into JSON object and submit POST request to add entries to
-     * database
-     */
-    public void addToDatabase(File file) {
-
-    }
-
-    /**
-     * Submit GET request to server to retrieve information from database and
-     * update view
-     */
-    public void search() {
 
     }
 
@@ -141,7 +152,69 @@ public class MainController extends Controller {
     @Override
     public void setView(View view) {
         // TODO Auto-generated method stub
-        
+
+    }
+
+    public void handleOk(ActionEvent event) {
+
+        try {
+            if (disease.getValue() == null) {
+            }
+            URL url = new URL("http://" + baseURL + "/search");
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            JsonObject search = new JsonObject();
+            if (zip.getValue() != null)
+                search.addProperty("zip", zip.getValue());
+            if (species.getValue() != null)
+                search.addProperty("species", species.getValue());
+            if (disease.getValue() != null)
+                search.addProperty("disease", disease.getValue());
+            if (test.getValue() != null)
+                search.addProperty("test", test.getValue());
+            if (testResult.getValue() != null)
+                search.addProperty("tested", testResult.getValue());
+
+            StringBuilder startDate = new StringBuilder();
+            if (startYear.getValue() != null)
+                startDate.append(startYear.getValue());
+            else
+                startDate.append("0000");
+            if (startMonth.getValue() != null)
+                startDate.append(startMonth.getValue());
+            else
+                startDate.append("01");
+            startDate.append("01");
+
+            search.addProperty("startDate", startDate.toString());
+
+            StringBuilder endDate = new StringBuilder();
+            if (endYear.getValue() != null)
+                endDate.append(startYear.getValue());
+            else
+                endDate.append("2018");
+            if (endMonth.getValue() != null)
+                endDate.append(startMonth.getValue());
+            else
+                endDate.append("12");
+            endDate.append("31");
+
+            search.addProperty("endDate", endDate.toString());
+
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+
+            OutputStreamWriter output = new OutputStreamWriter(connection.getOutputStream());
+            output.write(search.toString());
+            output.flush();
+            connection.connect();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        // TODO refresh the page
+
     }
 
 }

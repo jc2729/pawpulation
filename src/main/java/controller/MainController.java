@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
@@ -11,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
@@ -210,6 +213,26 @@ public class MainController extends Controller {
             output.write(search.toString());
             output.flush();
             connection.connect();
+            if (connection.getResponseCode() == 201) {
+				BufferedReader r =
+						new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/results.fxml"));
+				AnchorPane root;
+				try {
+					root = loader.load();
+				} catch (IOException e) {
+					e.printStackTrace();
+					return;
+				}
+				ResultsController res = ((ResultsController) loader.getController());
+				res.setStage(mainStage);
+				JsonArray array = new Gson().fromJson(r, JsonArray.class);
+				res.init(search, array.get(0).getAsInt(), array.get(1).getAsInt());
+				
+				Scene scene = new Scene(root);
+				mainStage.setScene(scene);
+				mainStage.show();
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

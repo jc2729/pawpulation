@@ -149,16 +149,17 @@ public class MainController extends Controller {
 		try {
 			URL url = new URL("http://" + baseURL + "/populate");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("POST");
+
 			connection.setDoOutput(true);
-			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Content-Type", "application/json");
 			connection.connect();
 
-			PrintWriter w = new PrintWriter(connection.getOutputStream());
-
-			w.println(zip);
-			w.flush();
+			OutputStreamWriter output = new OutputStreamWriter(connection.getOutputStream());
+			output.write(zip.toString());
+			output.flush();
 			System.out.println("heres");
+			connection.connect();
 
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));

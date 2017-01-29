@@ -64,7 +64,7 @@ public class Server {
             return db.export(parser.parse(request.body()).getAsJsonObject());
         });
 
-        get("/populate", (request, response) -> {
+        post("/populate", (request, response) -> {
         	System.out.println("in request");
             response.header("Content-Type", "application/json");
             response.status(201);

@@ -7,27 +7,38 @@ import static spark.Spark.post;
 import java.io.StringReader;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
+import database.Database;
 import spark.Route;
 
 import static spark.Spark.delete;
 
 public class Server {
+    Database db;
 
     public Server() {
-
+        db = new Database();
     }
 
     public void run() {
         port(8080);
         post("/import", (request, response) -> {
-            System.out.println("hi");
             response.header("Content-Type", "application/json");
             response.status(201);
+            String reqbod = request.body();
+            JsonParser parser = new JsonParser();
+            JsonArray dataArray = parser.parse(reqbod).getAsJsonArray();
+            for (JsonElement elem : dataArray) {
+                db.add(elem);
+            }
             return "";
         });
+        
         post("/login", (request, response) -> {
             String reqbod = request.body();
             JsonObject userPass = new Gson().fromJson(new StringReader(reqbod), JsonObject.class);

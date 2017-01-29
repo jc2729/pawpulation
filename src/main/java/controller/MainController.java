@@ -88,6 +88,7 @@ public class MainController extends Controller {
             //JsonObject jsonObj = jsonArray.get(0).getAsJsonObject();
             w.println(obj);
             w.flush();
+            connection.getResponseCode();
 
             /*for (int i = 0; i < jsonArray.size(); i++) {
                 JsonObject jsonObj = jsonArray.get(i).getAsJsonObject();

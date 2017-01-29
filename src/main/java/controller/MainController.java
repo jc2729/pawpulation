@@ -107,6 +107,7 @@ public class MainController extends Controller {
 			// parse file into JSON object
 			JsonParser parser = new JsonParser();
 			try {
+
 				JsonArray jsonArray = (JsonArray) parser.parse(new FileReader(file));
 				URL url = new URL("http://" + baseURL + "/import");
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -116,17 +117,20 @@ public class MainController extends Controller {
 				PrintWriter w = new PrintWriter(connection.getOutputStream());
 				w.println(jsonArray);
 				w.flush();
-				connection.getResponseCode();
+				if (connection.getResponseCode() == 201) {
+					Alert a = new Alert(AlertType.CONFIRMATION, "Import successful");
+					a.showAndWait();
+				}
 			} catch (JsonIOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (JsonSyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Alert a = new Alert(AlertType.WARNING, "Import unsuccessful");
+				a.showAndWait();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} 
 		}
 	}
 

@@ -245,6 +245,8 @@ public class MainController extends Controller {
 		this.disease.getItems().add("Osteosarcoma");
 		this.disease.getItems().add("Toxoplasma");
 		this.disease.getItems().add("Hypertrophic cardiomyopathy");
+		this.disease.getItems().add("Plumbism");
+		this.disease.getItems().add("Malignt narcissism");
 	}
 	
 	@FXML

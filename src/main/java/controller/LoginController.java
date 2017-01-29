@@ -64,7 +64,6 @@ public class LoginController extends Controller {
 			PrintWriter w = new PrintWriter(connection.getOutputStream());
 			w.println(loginCreds);
 			w.flush();
-			System.out.println("here");
 			if (connection.getResponseCode() == 201) {
 			} 
 //			else {

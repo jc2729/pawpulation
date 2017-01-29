@@ -23,7 +23,7 @@
                   </ImageView>
                   <MenuButton fx:id="settingdrop" layoutX="461.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" style="-fx-background-color: #B0DBEE;" text="Settings">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Import" />
+                      <MenuItem fx:id="importB" mnemonicParsing="false" onAction="#handleImportAction" text="Import" />
                       <MenuItem mnemonicParsing="false" text="Help" />
                     </items>
                   </MenuButton>

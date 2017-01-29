@@ -38,7 +38,7 @@ public class MainController extends Controller {
 
 	// fields for fxml elements
 	@FXML
-	private MenuButton importB;
+	private MenuItem importB;
 
 	@FXML
 	private Button searchB;
@@ -100,7 +100,7 @@ public class MainController extends Controller {
 	 * @throws IOException
 	 */
 	@FXML
-	private void handleImportTextFileAction(ActionEvent event) throws IOException {
+	private void handleImportAction(ActionEvent event) throws IOException {
 		// load file chooser
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Import File");
@@ -144,7 +144,6 @@ public class MainController extends Controller {
 			PrintWriter w = new PrintWriter(connection.getOutputStream());
 			w.println(zip);
 			w.flush();
-			System.out.println("here");
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();

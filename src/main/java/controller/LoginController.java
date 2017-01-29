@@ -64,13 +64,14 @@ public class LoginController extends Controller {
 			PrintWriter w = new PrintWriter(connection.getOutputStream());
 			w.println(loginCreds);
 			w.flush();
-
+			System.out.println("here");
 			if (connection.getResponseCode() == 201) {
-			} else {
-				Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");
-				a.showAndWait();
-				return;
-			}
+			} 
+//			else {
+//				Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");
+//				a.showAndWait();
+//				return;
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");
@@ -78,18 +79,18 @@ public class LoginController extends Controller {
 			return;
 		}
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/welcome.fxml"));
-        AnchorPane root;
+		AnchorPane root;
 		try {
 			root = loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-        ((MainController) loader.getController()).setStage(loginStage);
-        Scene scene = new Scene(root);
-        loginStage.setScene(scene);
-        loginStage.show();
-		
+		((MainController) loader.getController()).setStage(loginStage);
+		Scene scene = new Scene(root);
+		loginStage.setScene(scene);
+		loginStage.show();
+
 	}
 
 	@Override

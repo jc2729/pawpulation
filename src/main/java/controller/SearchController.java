@@ -40,6 +40,11 @@ public class SearchController extends Controller {
 	public void handleOk(ActionEvent event) {
 
 		try {
+			
+			if (disease.getValue()==null)
+			{
+				
+			}
 			URL url = new URL("http://" + baseURL + "/pullData");
 
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -54,7 +59,7 @@ public class SearchController extends Controller {
 			if (test.getValue() != null)
 				search.addProperty("test", test.getValue());
 			if (testResult.getValue() != null)
-				search.addProperty("testResult", testResult.getValue());
+				search.addProperty("tested", testResult.getValue());
 			if (startMonth.getValue() != null)
 				search.addProperty("startMonth", startMonth.getValue());
 			if (startYear.getValue() != null)

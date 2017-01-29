@@ -36,6 +36,7 @@ public class Database {
 
 	public void add(JsonObject elem) {
 		String date = elem.get("date").toString();
+		writeLock.lock();
 		data.put(date.toString(), elem);
 		if (Integer.valueOf(date.substring(0, 4)) < Integer.valueOf(minYear)) {
 			minYear = date.substring(0, 4);
@@ -46,11 +47,12 @@ public class Database {
 		zipCodes.add(elem.get("zip").toString());
 		species.add(elem.get("species").toString());
 		testTypes.add(elem.get("test").toString());
+		writeLock.unlock();
 	}
 
 	public JsonArray export(JsonObject elem) {
 		Comparator comparator = new DateComparator();
-		PriorityQueue<JsonObject> filtered = new PriorityQueue(15, comparator);
+		PriorityQueue<JsonObject> filtered = new PriorityQueue<JsonObject>(15, comparator);
 		boolean zip = elem.has("zip");
 		boolean species = elem.has("species");
 		boolean disease = elem.has("disease");
@@ -58,6 +60,7 @@ public class Database {
 		boolean date = elem.has("startDate") && elem.has("endDate");
 		boolean test = elem.has("test");
 
+		readLock.lock();
 		for (JsonObject dataPoint : data.values()) {
 			if (zip) {
 				if (elem.get("zip").equals(dataPoint.get("zip"))) {
@@ -99,6 +102,7 @@ public class Database {
 				}
 
 		}
+		readLock.unlock();
 		JsonArray filteredArray = new JsonArray();
 		while (!filtered.isEmpty()) {
 			filteredArray.add(filtered.poll());
@@ -111,10 +115,11 @@ public class Database {
 		boolean zip = elem.has("zip");
 		boolean species = elem.has("species");
 		boolean disease = elem.has("disease");
-		boolean tested = elem.has("lyme");
+		boolean tested = elem.has("tested");
 		boolean date = elem.has("date");
 		boolean test = elem.has("test");
 		int[] results = new int[2];
+		readLock.lock();
 		for (JsonObject dataPoint : data.values()) {
 			if (zip) {
 				if (elem.get("zip").equals(dataPoint.get("zip"))) {
@@ -156,7 +161,7 @@ public class Database {
 				}
 
 		}
-
+		readLock.unlock();
 		while (!filtered.isEmpty()) {
 			if (filtered.poll().get("tested").equals("pos")) {
 				results[0]++;

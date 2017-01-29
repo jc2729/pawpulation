@@ -45,7 +45,7 @@ public class MainController extends Controller {
 	// fields for fxml elements
 	@FXML
 	private MenuItem importB;
-	
+
 	@FXML
 	private Button exportB;
 
@@ -84,7 +84,7 @@ public class MainController extends Controller {
 
 	@FXML
 	ComboBox<String> endYear;
-	
+
 	@FXML
 	Text textresult;
 
@@ -136,7 +136,7 @@ public class MainController extends Controller {
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 		}
 	}
 
@@ -151,10 +151,15 @@ public class MainController extends Controller {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestMethod("GET");
-			System.out.println("sending request");
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.connect();
+
 			PrintWriter w = new PrintWriter(connection.getOutputStream());
+
 			w.println(zip);
 			w.flush();
+			System.out.println("heres");
+
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();
@@ -237,9 +242,9 @@ public class MainController extends Controller {
 		}
 
 	}
-	
+
 	@FXML
-	private void onDiseasePressed(MouseEvent event){
+	private void onDiseasePressed(MouseEvent event) {
 		this.disease.getItems().add("Lyme");
 		this.disease.getItems().add("Anaplasma");
 		this.disease.getItems().add("Heartworm");
@@ -251,9 +256,9 @@ public class MainController extends Controller {
 		this.disease.getItems().add("Plumbism");
 		this.disease.getItems().add("Malignt narcissism");
 	}
-	
+
 	@FXML
-	private void onTestPressed(MouseEvent event){
+	private void onTestPressed(MouseEvent event) {
 		JsonObject test = new JsonObject();
 		test.addProperty("test", "");
 
@@ -281,31 +286,29 @@ public class MainController extends Controller {
 			return;
 		}
 	}
-	
+
 	@FXML
-	private void onMinMonthPressed(MouseEvent event){
-		for(int i = 1; i <=12; i++){
-			if(i < 10){
+	private void onMinMonthPressed(MouseEvent event) {
+		for (int i = 1; i <= 12; i++) {
+			if (i < 10) {
 				this.startMonth.getItems().add("0" + i);
-			}
-			else
+			} else
 				this.startMonth.getItems().add("" + i);
 		}
 	}
-	
+
 	@FXML
-	private void onMaxMonthPressed(MouseEvent event){
-		for(int i = 1; i <=12; i++){
-			if(i < 10){
+	private void onMaxMonthPressed(MouseEvent event) {
+		for (int i = 1; i <= 12; i++) {
+			if (i < 10) {
 				this.endMonth.getItems().add("0" + i);
-			}
-			else
+			} else
 				this.endMonth.getItems().add("" + i);
 		}
 	}
-	
+
 	@FXML
-	private void onMaxYearPressed(MouseEvent event){
+	private void onMaxYearPressed(MouseEvent event) {
 		JsonObject maxYear = new JsonObject();
 		maxYear.addProperty("date", "");
 
@@ -336,7 +339,7 @@ public class MainController extends Controller {
 			return;
 		}
 	}
-	
+
 	@FXML
 	public void handleSearchButton(ActionEvent event) {
 
@@ -392,12 +395,12 @@ public class MainController extends Controller {
 			output.flush();
 			connection.connect();
 			if (connection.getResponseCode() == 201) {
-				//TODO: change
+				// TODO: change
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-				
+
 				JsonArray array = new Gson().fromJson(r, JsonArray.class);
-				textresult.setText("Results:\nPositive: " + array.get(0).getAsInt() + 
-						"\nNegative: " + array.get(1).getAsInt());
+				textresult.setText(
+						"Results:\nPositive: " + array.get(0).getAsInt() + "\nNegative: " + array.get(1).getAsInt());
 				exportB.setVisible(true);
 			}
 		} catch (Exception e) {
@@ -406,7 +409,7 @@ public class MainController extends Controller {
 		// TODO refresh the page
 
 	}
-	
+
 	@FXML
 	private void handleExport(ActionEvent event) {
 		try {

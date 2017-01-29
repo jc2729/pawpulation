@@ -11,7 +11,9 @@
         <items>
           <AnchorPane fx:id="menuPane" minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="598.0" style="-fx-background-color: #559FBF;">
                <children>
-                  <ImageView fx:id="logo" fitHeight="73.0" fitWidth="308.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="logo" fitHeight="73.0" fitWidth="308.0" layoutX="84.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                  <image> <Image url="@pawpulation.png" /> </image>
+                  </ImageView>
                   <ToolBar layoutY="84.0" prefHeight="49.0" prefWidth="601.0" style="-fx-background-color: #559FBF;">
                     <items>
                       <Button fx:id="searchB" mnemonicParsing="false" style="-fx-background-color: #B0DBEE;" text="Search Database" />
@@ -36,6 +38,11 @@
                         </Button>
                     </items>
                   </ToolBar>
+                  <ImageView fitHeight="74.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@logo.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
           <AnchorPane fx:id="bottomPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #B0DBEE;">
                <children>

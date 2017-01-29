@@ -33,6 +33,6 @@
             <Pane HBox.hgrow="ALWAYS" />
         </items>
       </ToolBar>
-      <Text layoutX="137.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search the Database With the Following Filters" textAlignment="CENTER" />
+      <Text layoutX="110.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search the Database With the Following Filters" textAlignment="CENTER" />
    </children>
 </AnchorPane>

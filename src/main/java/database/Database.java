@@ -195,7 +195,7 @@ public class Database {
 				} else if (date) {
 					filtered.remove(dataPoint);
 				}
-			if (zip)
+			if (test)
 				if (elem.get("test").equals(dataPoint.get("test"))) {
 					filtered.add(dataPoint);
 				} else if (test) {

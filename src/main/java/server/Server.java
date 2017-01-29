@@ -52,7 +52,7 @@ public class Server {
 
 		});
 
-		get("/search", (request, response) -> {
+		post("/search", (request, response) -> {
 			response.header("Content-Type", "application/json");
 			response.status(200);
 			return db.retrieveSummary(parser.parse(request.body()).getAsJsonObject());

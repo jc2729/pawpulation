@@ -72,7 +72,7 @@ public class Database {
 	}
 	
 	public void add(JsonObject elem) {
-		String date = elem.get("date").toString();
+		String date = elem.get("date").getAsString();
 		writeLock.lock();
 		data.put(date.toString(), elem);
 		if (Integer.valueOf(date.substring(0, 4)) < Integer.valueOf(minYear)) {
@@ -80,7 +80,6 @@ public class Database {
 		}
 		zipCodes.add(elem.get("zip").toString());
 		species.add(elem.get("species").toString());
-		testTypes.add(elem.get("test").toString());
 		writeLock.unlock();
 	}
 

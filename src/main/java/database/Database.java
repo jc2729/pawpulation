@@ -4,25 +4,48 @@ package database;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.TreeSet;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 //need to refactor code
 public class Database {
-	Hashtable<String, JsonObject> data;
 	ReadLock readLock = new ReentrantReadWriteLock().readLock();
 	WriteLock writeLock = new ReentrantReadWriteLock().writeLock();
+	Hashtable<String, JsonObject> data;
+	Set<String> zipCodes;
+	Set<String> species;
+	Set<String> testTypes;
+	String minYear;
+	String maxYear;
 
 	public Database() {
 		data = new Hashtable<String, JsonObject>();
+		zipCodes = new TreeSet<String>();
+		species = new TreeSet<String>();
+		minYear = "2018";
+		maxYear = "2018";
 	}
 
 	public void add(JsonObject elem) {
-		data.put((elem.get("date")).toString(), elem);
+		String date = elem.get("date").toString();
+		data.put(date.toString(), elem);
+		if (Integer.valueOf(date.substring(0, 4)) < Integer.valueOf(minYear)) {
+			minYear = date.substring(0, 4);
+		}
+		if (Integer.valueOf(date.substring(0, 4)) > Integer.valueOf(maxYear)) {
+			maxYear = date.substring(0, 4);
+		}
+		zipCodes.add(elem.get("zip").toString());
+		species.add(elem.get("species").toString());
+		testTypes.add(elem.get("test").toString());
 	}
 
 	public JsonArray export(JsonObject elem) {
@@ -31,7 +54,7 @@ public class Database {
 		boolean zip = elem.has("zip");
 		boolean species = elem.has("species");
 		boolean disease = elem.has("disease");
-		boolean tested = elem.has("lyme");
+		boolean tested = elem.has("tested");
 		boolean date = elem.has("startDate") && elem.has("endDate");
 		boolean test = elem.has("test");
 

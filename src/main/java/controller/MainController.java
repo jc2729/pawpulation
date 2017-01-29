@@ -142,23 +142,11 @@ public class MainController extends Controller {
 
 	@FXML
 	public void onZipPressed(MouseEvent event) {
-		System.out.println("on zip pressed");
-		JsonObject zip = new JsonObject();
-		zip.addProperty("zip", "");
 
 		try {
-			URL url = new URL("http://" + baseURL + "/populate");
+			URL url = new URL("http://" + baseURL + "/populate?field=zip");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod("POST");
-
-			connection.setDoOutput(true);
-			connection.setRequestProperty("Content-Type", "application/json");
-			connection.connect();
-
-			OutputStreamWriter output = new OutputStreamWriter(connection.getOutputStream());
-			output.write(zip.toString());
-			output.flush();
-			System.out.println("heres");
+			connection.setRequestMethod("GET");
 			connection.connect();
 
 			if (connection.getResponseCode() == 201) {
@@ -181,17 +169,13 @@ public class MainController extends Controller {
 
 	@FXML
 	public void onSpeciesPressed(MouseEvent event) {
-		JsonObject species = new JsonObject();
-		species.addProperty("species", "");
-
 		try {
-			URL url = new URL("http://" + baseURL + "/populate");
+			System.out.println("hereee");
+			URL url = new URL("http://" + baseURL + "/populate?field=species");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
 			connection.setRequestMethod("GET");
-			PrintWriter w = new PrintWriter(connection.getOutputStream());
-			w.println(species);
-			w.flush();
+			connection.connect();
+
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();
@@ -212,17 +196,14 @@ public class MainController extends Controller {
 
 	@FXML
 	public void onMinYearPressed(MouseEvent event) {
-		JsonObject minYear = new JsonObject();
-		minYear.addProperty("date", "");
-
 		try {
-			URL url = new URL("http://" + baseURL + "/populate");
+			URL url = new URL("http://" + baseURL + "/populate?field=date");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
 			connection.setRequestMethod("GET");
-			PrintWriter w = new PrintWriter(connection.getOutputStream());
-			w.println(minYear);
-			w.flush();
+
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.connect();
+
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();
@@ -260,17 +241,14 @@ public class MainController extends Controller {
 
 	@FXML
 	private void onTestPressed(MouseEvent event) {
-		JsonObject test = new JsonObject();
-		test.addProperty("test", "");
-
 		try {
-			URL url = new URL("http://" + baseURL + "/populate");
+			URL url = new URL("http://" + baseURL + "/populate?field=test");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
 			connection.setRequestMethod("GET");
-			PrintWriter w = new PrintWriter(connection.getOutputStream());
-			w.println(test);
-			w.flush();
+
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.connect();
+
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();

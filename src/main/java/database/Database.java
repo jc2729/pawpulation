@@ -29,6 +29,7 @@ public class Database {
 		data = new Hashtable<String, JsonObject>();
 		zipCodes = new TreeSet<String>();
 		species = new TreeSet<String>();
+		testTypes = new TreeSet<String>();
 		minYear = "2018";
 	}
 
@@ -75,11 +76,19 @@ public class Database {
 		String date = elem.get("date").getAsString();
 		writeLock.lock();
 		data.put(date, elem);
+
 		if (Integer.valueOf(date.substring(0, 4)) < Integer.valueOf(minYear)) {
 			minYear = date.substring(0, 4);
 		}
 		zipCodes.add(elem.get("zip").getAsString());
+		System.out.println(elem.get("zip").getAsString());
+
 		species.add(elem.get("species").getAsString());
+		System.out.println(elem.get("species").getAsString());
+		assert !species.isEmpty();
+		
+		testTypes.add(elem.get("test").getAsString());
+		assert !testTypes.isEmpty();
 		writeLock.unlock();
 	}
 

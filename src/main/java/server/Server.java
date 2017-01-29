@@ -34,7 +34,7 @@ public class Server {
             JsonParser parser = new JsonParser();
             JsonArray dataArray = parser.parse(reqbod).getAsJsonArray();
             for (JsonElement elem : dataArray) {
-                db.add(elem);
+                db.add(elem.getAsJsonObject());
             }
             return "";
         });

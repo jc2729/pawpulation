@@ -209,8 +209,7 @@ public class MainController extends Controller {
 				JsonParser parser = new JsonParser();
 
 				JsonObject obj = parser.parse(r).getAsJsonObject();
-				this.startYear.getItems().add(obj.getAsString());
-				int year = Integer.parseInt(obj.getAsString());
+				int year = Integer.parseInt(obj.get("date").getAsString());
 				while (year < 2018) {
 					this.startYear.getItems().add(year + "");
 					year++;
@@ -288,29 +287,25 @@ public class MainController extends Controller {
 
 	@FXML
 	private void onMaxYearPressed(MouseEvent event) {
-		JsonObject maxYear = new JsonObject();
-		maxYear.addProperty("date", "");
+		try{
+		URL url = new URL("http://" + baseURL + "/populate?field=date");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("GET");
 
-		try {
-			URL url = new URL("http://" + baseURL + "/populate");
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
-			connection.setRequestMethod("GET");
-			PrintWriter w = new PrintWriter(connection.getOutputStream());
-			w.println(maxYear);
-			w.flush();
-			if (connection.getResponseCode() == 201) {
-				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-				JsonParser parser = new JsonParser();
+		connection.setRequestProperty("Content-Type", "application/json");
+		connection.connect();
 
-				JsonObject obj = parser.parse(r).getAsJsonObject();
-				this.endYear.getItems().add(obj.getAsString());
-				int year = Integer.parseInt(obj.getAsString());
-				while (year < 2018) {
-					this.endYear.getItems().add(year + "");
-					year++;
-				}
+		if (connection.getResponseCode() == 201) {
+			BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			JsonParser parser = new JsonParser();
+
+			JsonObject obj = parser.parse(r).getAsJsonObject();
+			int year = Integer.parseInt(obj.get("date").getAsString());
+			while (year < 2018) {
+				this.endYear.getItems().add(year + "");
+				year++;
 			}
+		}
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");

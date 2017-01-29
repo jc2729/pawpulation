@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -32,22 +33,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.text.*;
 
 public class MainController extends Controller {
 	private Stage mainStage;
 
+	private static String fileLoc = "results.csv";
+	private JsonObject searchInfo;
 	// fields for fxml elements
 	@FXML
 	private MenuItem importB;
 
 	@FXML
 	private Button searchB;
-
-	@FXML
-	private Button settingsB;
-
-	@FXML
-	private MenuItem importTextFile;
 
 	@FXML
 	private SplitPane splitPane;
@@ -57,9 +55,6 @@ public class MainController extends Controller {
 
 	@FXML
 	private AnchorPane bottomPane;
-
-	@FXML
-	private ImageView welcome;
 
 	@FXML
 	ComboBox<String> zip;
@@ -84,6 +79,9 @@ public class MainController extends Controller {
 
 	@FXML
 	ComboBox<String> endYear;
+	
+	@FXML
+	Text textresult;
 
 	/**
 	 * Set stage for main controller.
@@ -228,7 +226,7 @@ public class MainController extends Controller {
 
 	}
 
-	public void handleOk(ActionEvent event) {
+	public void handleSearchButton(ActionEvent event) {
 
 		try {
 			if (disease.getValue() == null) {
@@ -276,35 +274,71 @@ public class MainController extends Controller {
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Content-Type", "application/json");
 			connection.setRequestProperty("Accept", "application/json");
-
+			searchInfo = search;
 			OutputStreamWriter output = new OutputStreamWriter(connection.getOutputStream());
 			output.write(search.toString());
 			output.flush();
 			connection.connect();
 			if (connection.getResponseCode() == 201) {
+				//TODO: change
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/results.fxml"));
-				AnchorPane root;
-				try {
-					root = loader.load();
-				} catch (IOException e) {
-					e.printStackTrace();
-					return;
-				}
-				ResultsController res = ((ResultsController) loader.getController());
-				res.setStage(mainStage);
+				
 				JsonArray array = new Gson().fromJson(r, JsonArray.class);
+				textresult.setText("Results:\n");
 				res.init(search, array.get(0).getAsInt(), array.get(1).getAsInt());
-
-				Scene scene = new Scene(root);
-				mainStage.setScene(scene);
-				mainStage.show();
+				
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		// TODO refresh the page
 
+	}
+	
+	@FXML
+	private void handleExport(ActionEvent event) {
+		try {
+			URL url = new URL("http://" + baseURL + "/login");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestMethod("GET");
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setRequestProperty("Accept", "application/json");
+			OutputStreamWriter output = new OutputStreamWriter(connection.getOutputStream());
+			output.write(searchInfo.toString());
+			output.flush();
+			connection.connect();
+			if (connection.getResponseCode() == 201) {
+				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				JsonArray arr = new Gson().fromJson(r, JsonArray.class);
+
+				StringBuilder res = new StringBuilder();
+				res.append("Date,");
+				res.append("ZipCode,");
+				res.append("Species,");
+				res.append("Disease,");
+				res.append("Test,");
+				res.append("TestResult\n");
+				for (JsonElement e : arr) {
+					JsonObject o = e.getAsJsonObject();
+					res.append(o.get("date").getAsString().substring(0, 4) + "-"
+							+ o.get("date").getAsString().substring(4, 6) + "-"
+							+ o.get("date").getAsString().substring(6) + ",");
+					res.append(o.get("zip").getAsString() + ",");
+					res.append(o.get("species").getAsString() + ",");
+					res.append(o.get("disease").getAsString() + ",");
+					res.append(o.get("test").getAsString() + ",");
+					res.append(o.get("tested").getAsString() + ",");
+					res.append("\n");
+				}
+				File f = new File(fileLoc);
+				FileWriter write = new FileWriter(f);
+				write.write(res.toString());
+				write.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

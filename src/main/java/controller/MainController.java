@@ -33,7 +33,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class MainController extends Controller {
-    private View view;
     private Stage mainStage;
 
     // fields for fxml elements
@@ -145,16 +144,6 @@ public class MainController extends Controller {
 
     @FXML
     private void handleSettingsAction(ActionEvent event) {
-
-    }
-
-    public void updateView() {
-
-    }
-
-    @Override
-    public void setView(View view) {
-        // TODO Auto-generated method stub
 
     }
 

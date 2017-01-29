@@ -25,7 +25,6 @@ import javafx.fxml.*;
  */
 public class ResultsController extends Controller{
 	private Stage resultStage;
-	private View view;
 	private JsonObject search;
 	private int positives, negatives;
 	private static String fileLoc = "results.csv";
@@ -92,10 +91,5 @@ public class ResultsController extends Controller{
 		}
 	}
 
-
-	@Override
-	public void setView(View theView) {
-		this.view = theView;
-	}
 
 }

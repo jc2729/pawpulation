@@ -19,14 +19,14 @@ import com.google.gson.JsonObject;
 public class Database {
 	ReadLock readLock = new ReentrantReadWriteLock().readLock();
 	WriteLock writeLock = new ReentrantReadWriteLock().writeLock();
-	Hashtable<String, JsonObject> data;
+	ArrayList<JsonObject> data;
 	Set<String> zipCodes;
 	Set<String> species;
 	Set<String> testTypes;
 	String minYear;
 
 	public Database() {
-		data = new Hashtable<String, JsonObject>();
+		data = new ArrayList<JsonObject>();
 		zipCodes = new TreeSet<String>();
 		species = new TreeSet<String>();
 		testTypes = new TreeSet<String>();
@@ -75,7 +75,7 @@ public class Database {
 	public void add(JsonObject elem) {
 		String date = elem.get("date").getAsString();
 		writeLock.lock();
-		data.put(date, elem);
+		data.add(elem);
 
 		if (Integer.valueOf(date.substring(0, 4)) < Integer.valueOf(minYear)) {
 			minYear = date.substring(0, 4);
@@ -103,7 +103,7 @@ public class Database {
 		boolean test = elem.has("test");
 
 		readLock.lock();
-		for (JsonObject dataPoint : data.values()) {
+		for (JsonObject dataPoint : data) {
 			if (zip) {
 				if (elem.get("zip").equals(dataPoint.get("zip"))) {
 					filtered.add(dataPoint);
@@ -162,50 +162,43 @@ public class Database {
 		boolean test = elem.has("test");
 		int[] results = new int[2];
 		readLock.lock();
-		for (JsonObject dataPoint : data.values()) {
+		for(JsonObject dataPoint : data){
+			filtered.add(dataPoint);
+		}
+		for (JsonObject dataPoint : data) {
 			if (zip) {
-				if (elem.get("zip").equals(dataPoint.get("zip"))) {
-					filtered.add(dataPoint);
-				} else {
+				if (!elem.get("zip").equals(dataPoint.get("zip"))) {
 					filtered.remove(dataPoint);
 				}
 			}
 			if (species)
-				if (elem.get("species").equals(dataPoint.get("species"))) {
-					filtered.add(dataPoint);
-				} else {
+				if (!elem.get("species").equals(dataPoint.get("species"))) {
 					filtered.remove(dataPoint);
 				}
 			if (disease)
-				if (elem.get("disease").equals(dataPoint.get("disease"))) {
-					filtered.add(dataPoint);
-				} else if (disease) {
+				if (!elem.get("disease").equals(dataPoint.get("disease"))){
 					filtered.remove(dataPoint);
 				}
 			if (tested)
-				if (elem.get("tested").equals(dataPoint.get("tested"))) {
-					filtered.add(dataPoint);
-				} else if (tested) {
+				if (!elem.get("tested").equals(dataPoint.get("tested"))) {
 					filtered.remove(dataPoint);
 				}
 			if (date)
 				if (elem.get("startDate").getAsInt() < dataPoint.get("date").getAsInt()
 						&& elem.get("endDate").getAsInt() > dataPoint.get("date").getAsInt()) {
-					filtered.add(dataPoint);
+					
 				} else if (date) {
 					filtered.remove(dataPoint);
 				}
 			if (test)
-				if (elem.get("test").equals(dataPoint.get("test"))) {
-					filtered.add(dataPoint);
-				} else if (test) {
+				if (!elem.get("test").equals(dataPoint.get("test"))) {
 					filtered.remove(dataPoint);
 				}
 
 		}
 		readLock.unlock();
 		while (!filtered.isEmpty()) {
-			if (filtered.poll().get("tested").equals("pos")) {
+			if (filtered.poll().get("tested").getAsString().equals("pos")) {
 				results[0]++;
 			} else {
 				results[1]++;

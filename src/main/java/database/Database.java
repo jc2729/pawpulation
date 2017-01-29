@@ -1,17 +1,21 @@
 
 package database;
 
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 //need to refactor code
 public class Database {
 	Hashtable<String, JsonObject> data;
+	ReadLock readLock = new ReentrantReadWriteLock().readLock();
+	WriteLock writeLock = new ReentrantReadWriteLock().writeLock();
 
 	public Database() {
 		data = new Hashtable<String, JsonObject>();

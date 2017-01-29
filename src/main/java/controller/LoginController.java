@@ -93,8 +93,4 @@ public class LoginController extends Controller {
 
 	}
 
-	@Override
-	public void setView(View view) {
-
-	}
 }

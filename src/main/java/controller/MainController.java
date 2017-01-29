@@ -33,7 +33,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class MainController extends Controller {
-    private View view;
     private Stage mainStage;
 
     // fields for fxml elements
@@ -130,20 +129,6 @@ public class MainController extends Controller {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    /*
-     * @FXML private void handleSearchAction(ActionEvent event) throws
-     * IOException { // make search pane visible FXMLLoader loader = new
-     * FXMLLoader(getClass().getResource("/search.fxml")); final Parent root =
-     * loader.load(); ((SearchController)
-     * loader.getController()).setStage(mainStage); Scene scene = new
-     * Scene(root); mainStage.setScene(scene); mainStage.show(); }
-     */
-
-    @FXML
-    private void handleSettingsAction(ActionEvent event) {
-
     }
 
 

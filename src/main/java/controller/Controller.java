@@ -22,7 +22,5 @@ public abstract class Controller {
 		s.close();
 	}
 
-	@FXML
-	public abstract void setView(View view);
 
 }

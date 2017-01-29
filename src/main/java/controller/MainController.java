@@ -152,7 +152,7 @@ public class MainController extends Controller {
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();
-
+				this.zip.getItems().clear();
 				JsonArray arr = parser.parse(r).getAsJsonArray();
 				for (JsonElement obj : arr) {
 					this.zip.getItems().add(obj.getAsString());
@@ -179,6 +179,7 @@ public class MainController extends Controller {
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();
+				this.species.getItems().clear();
 
 				JsonArray arr = parser.parse(r).getAsJsonArray();
 				for (JsonElement obj : arr) {
@@ -207,7 +208,7 @@ public class MainController extends Controller {
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();
-
+				this.startYear.getItems().clear();
 				JsonObject obj = parser.parse(r).getAsJsonObject();
 				int year = Integer.parseInt(obj.get("date").getAsString());
 				while (year < 2018) {
@@ -251,6 +252,7 @@ public class MainController extends Controller {
 			if (connection.getResponseCode() == 201) {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				JsonParser parser = new JsonParser();
+				this.test.getItems().clear();
 
 				JsonArray arr = parser.parse(r).getAsJsonArray();
 				for (JsonElement obj : arr) {
@@ -267,6 +269,8 @@ public class MainController extends Controller {
 
 	@FXML
 	private void onMinMonthPressed(MouseEvent event) {
+		this.startMonth.getItems().clear();
+
 		for (int i = 1; i <= 12; i++) {
 			if (i < 10) {
 				this.startMonth.getItems().add("0" + i);
@@ -277,6 +281,8 @@ public class MainController extends Controller {
 
 	@FXML
 	private void onMaxMonthPressed(MouseEvent event) {
+		this.endMonth.getItems().clear();
+
 		for (int i = 1; i <= 12; i++) {
 			if (i < 10) {
 				this.endMonth.getItems().add("0" + i);
@@ -287,25 +293,27 @@ public class MainController extends Controller {
 
 	@FXML
 	private void onMaxYearPressed(MouseEvent event) {
-		try{
-		URL url = new URL("http://" + baseURL + "/populate?field=date");
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("GET");
+		try {
+			
 
-		connection.setRequestProperty("Content-Type", "application/json");
-		connection.connect();
+			URL url = new URL("http://" + baseURL + "/populate?field=date");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
 
-		if (connection.getResponseCode() == 201) {
-			BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			JsonParser parser = new JsonParser();
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.connect();
+			this.endYear.getItems().clear();
+			if (connection.getResponseCode() == 201) {
+				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				JsonParser parser = new JsonParser();
 
-			JsonObject obj = parser.parse(r).getAsJsonObject();
-			int year = Integer.parseInt(obj.get("date").getAsString());
-			while (year < 2018) {
-				this.endYear.getItems().add(year + "");
-				year++;
+				JsonObject obj = parser.parse(r).getAsJsonObject();
+				int year = Integer.parseInt(obj.get("date").getAsString());
+				while (year < 2018) {
+					this.endYear.getItems().add(year + "");
+					year++;
+				}
 			}
-		}
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");

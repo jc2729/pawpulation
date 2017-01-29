@@ -86,7 +86,7 @@ public class Database {
 		species.add(elem.get("species").getAsString());
 		System.out.println(elem.get("species").getAsString());
 		assert !species.isEmpty();
-		
+		System.out.println(species.size()+"size");
 		testTypes.add(elem.get("test").getAsString());
 		assert !testTypes.isEmpty();
 		writeLock.unlock();

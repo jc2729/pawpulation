@@ -25,6 +25,7 @@ import com.google.gson.JsonSyntaxException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -43,6 +44,9 @@ public class MainController extends Controller {
 	// fields for fxml elements
 	@FXML
 	private MenuItem importB;
+	
+	@FXML
+	private Button exportB;
 
 	@FXML
 	private Button searchB;
@@ -90,6 +94,7 @@ public class MainController extends Controller {
 	 */
 	public void setStage(Stage stage) {
 		mainStage = stage;
+		exportB.setVisible(false);
 	}
 
 	/**
@@ -229,7 +234,105 @@ public class MainController extends Controller {
 		}
 
 	}
+	
+	@FXML
+	private void onDiseasePressed(ActionEvent event){
+		this.disease.getItems().add("Lyme");
+		this.disease.getItems().add("Anaplasma");
+		this.disease.getItems().add("Heartworm");
+		this.disease.getItems().add("Leptospirosis");
+		this.disease.getItems().add("Dilated cardiomyopathy");
+		this.disease.getItems().add("Osteosarcoma");
+		this.disease.getItems().add("Toxoplasma");
+		this.disease.getItems().add("Hypertrophic cardiomyopathy");
+	}
+	
+	@FXML
+	private void onTestPressed(ActionEvent event){
+		JsonObject test = new JsonObject();
+		test.addProperty("test", "");
 
+		try {
+			URL url = new URL("http://" + baseURL + "/populate");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestMethod("GET");
+			PrintWriter w = new PrintWriter(connection.getOutputStream());
+			w.println(test);
+			w.flush();
+			if (connection.getResponseCode() == 201) {
+				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				JsonParser parser = new JsonParser();
+
+				JsonArray arr = parser.parse(r).getAsJsonArray();
+				for (JsonElement obj : arr) {
+					this.test.getItems().add(obj.getAsString());
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");
+			a.showAndWait();
+			return;
+		}
+	}
+	
+	@FXML
+	private void onMinMonthPressed(ActionEvent event){
+		for(int i = 1; i <=12; i++){
+			if(i < 10){
+				this.startMonth.getItems().add("0" + i);
+			}
+			else
+				this.startMonth.getItems().add("" + i);
+		}
+	}
+	
+	@FXML
+	private void onMaxMonthPressed(ActionEvent event){
+		for(int i = 1; i <=12; i++){
+			if(i < 10){
+				this.endMonth.getItems().add("0" + i);
+			}
+			else
+				this.endMonth.getItems().add("" + i);
+		}
+	}
+	
+	@FXML
+	private void onMaxYearPressed(ActionEvent event){
+		JsonObject maxYear = new JsonObject();
+		maxYear.addProperty("date", "");
+
+		try {
+			URL url = new URL("http://" + baseURL + "/populate");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestMethod("GET");
+			PrintWriter w = new PrintWriter(connection.getOutputStream());
+			w.println(maxYear);
+			w.flush();
+			if (connection.getResponseCode() == 201) {
+				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				JsonParser parser = new JsonParser();
+
+				JsonObject obj = parser.parse(r).getAsJsonObject();
+				this.endYear.getItems().add(obj.getAsString());
+				int year = Integer.parseInt(obj.getAsString());
+				while (year < 2018) {
+					this.endYear.getItems().add(year + "");
+					year++;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			Alert a = new Alert(AlertType.ERROR, "Could not connect to server.");
+			a.showAndWait();
+			return;
+		}
+	}
+	
+	@FXML
 	public void handleSearchButton(ActionEvent event) {
 
 		try {
@@ -288,9 +391,9 @@ public class MainController extends Controller {
 				BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				
 				JsonArray array = new Gson().fromJson(r, JsonArray.class);
-				textresult.setText("Results:\n");
-				res.init(search, array.get(0).getAsInt(), array.get(1).getAsInt());
-				
+				textresult.setText("Results:\nPositive: " + array.get(0).getAsInt() + 
+						"\nNegative: " + array.get(1).getAsInt());
+				exportB.setVisible(true);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

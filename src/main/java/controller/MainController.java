@@ -384,7 +384,7 @@ public class MainController extends Controller {
             output.flush();
             connection.connect();
 
-            if (connection.getResponseCode() == 201) {
+            if (connection.getResponseCode() == 200) {
                 // TODO: change
                 BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 

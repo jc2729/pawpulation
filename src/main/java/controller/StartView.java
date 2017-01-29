@@ -16,6 +16,7 @@ public class StartView extends Application {
         ((LoginController) loader.getController()).setStage(stage);
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Pawpulation");
         stage.show();
     }
 

@@ -20,14 +20,14 @@ public class ArrToCSV {
 		res.append("Test,");
 		res.append("TestResult\n");
 		for(JsonObject o : objs){
-			res.append(o.get("date").toString().substring(0,4) + "-" + 
-					o.get("date").toString().substring(4,6) + "-" +
-					o.get("date").toString().substring(6) + ",");
-			res.append(o.get("zip").toString() + ",");
-			res.append(o.get("species").toString() + ",");
-			res.append(o.get("disease").toString() + ",");
-			res.append(o.get("test").toString() + ",");
-			res.append(o.get("tested").toString() + ",");
+			res.append(o.get("date").getAsString().substring(0,4) + "-" + 
+					o.get("date").getAsString().substring(4,6) + "-" +
+					o.get("date").getAsString().substring(6) + ",");
+			res.append(o.get("zip").getAsString() + ",");
+			res.append(o.get("species").getAsString() + ",");
+			res.append(o.get("disease").getAsString() + ",");
+			res.append(o.get("test").getAsString()+ ",");
+			res.append(o.get("tested").getAsString() + ",");
 			res.append("\n");
 		}
 		File f = new File(fileLoc);

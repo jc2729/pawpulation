@@ -70,16 +70,16 @@ public class Database {
 			readLock.unlock();
 		}
 	}
-	
+
 	public void add(JsonObject elem) {
 		String date = elem.get("date").getAsString();
 		writeLock.lock();
-		data.put(date.toString(), elem);
+		data.put(date, elem);
 		if (Integer.valueOf(date.substring(0, 4)) < Integer.valueOf(minYear)) {
 			minYear = date.substring(0, 4);
 		}
-		zipCodes.add(elem.get("zip").toString());
-		species.add(elem.get("species").toString());
+		zipCodes.add(elem.get("zip").getAsString());
+		species.add(elem.get("species").getAsString());
 		writeLock.unlock();
 	}
 

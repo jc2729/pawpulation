@@ -81,12 +81,12 @@ public class Database {
 			minYear = date.substring(0, 4);
 		}
 		zipCodes.add(elem.get("zip").getAsString());
-		System.out.println(elem.get("zip").getAsString());
+//		System.out.println(elem.get("zip").getAsString());
 
 		species.add(elem.get("species").getAsString());
-		System.out.println(elem.get("species").getAsString());
+//		System.out.println(elem.get("species").getAsString());
 		assert !species.isEmpty();
-		System.out.println(species.size()+"size");
+//		System.out.println(species.size()+"size");
 		testTypes.add(elem.get("test").getAsString());
 		assert !testTypes.isEmpty();
 		writeLock.unlock();

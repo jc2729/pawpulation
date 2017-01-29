@@ -171,7 +171,7 @@ public class MainController extends Controller {
     @FXML
     public void onSpeciesPressed(MouseEvent event) {
         try {
-            System.out.println("hereee");
+//            System.out.println("hereee");
             URL url = new URL("http://" + baseURL + "/populate?field=species");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
@@ -422,7 +422,7 @@ public class MainController extends Controller {
             if (connection.getResponseCode() == 200) {
                 BufferedReader r = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 JsonArray arr = new Gson().fromJson(r, JsonArray.class);
-                System.out.println("a");
+//                System.out.println("a");
 
                 StringBuilder res = new StringBuilder();
                 res.append("Date,");

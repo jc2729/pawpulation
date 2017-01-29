@@ -1,3 +1,7 @@
 Date,ZipCode,Species,Disease,Test,TestResult
-2017-01-28,14853,squirrel,rabies,asdfadg,pos,
-2017-01-28,14853,squirrel,rabies,asdfg,pos,
+2017-01-25,14853,dog,lyme,40X,pos,
+2017-01-26,14853,dog,lyme,40X,neg,
+2017-01-27,14853,dog,lyme,40X,pos,
+2017-01-27,14853,dog,lyme,40X,neg,
+2017-01-28,14853,dog,lyme,40X,neg,
+2017-01-28,14853,dog,lyme,40X,neg,

@@ -77,7 +77,6 @@ public class Server {
 				return zipJson;
 			}
 			else if (field.equals("species")) {
-				System.out.println("herrrr");
 				Set<String> species = db.getSpecies();
 				JsonArray speciesJson = new JsonArray();
 				for (String specie : species) {

@@ -151,7 +151,7 @@ public class MainController extends Controller {
 
 				JsonArray arr = parser.parse(r).getAsJsonArray();
 				for (JsonElement obj : arr) {
-					this.zip.getItems().add(obj.toString());
+					this.zip.getItems().add(obj.getAsString());
 				}
 			}
 		} catch (IOException e) {
@@ -182,7 +182,7 @@ public class MainController extends Controller {
 
 				JsonArray arr = parser.parse(r).getAsJsonArray();
 				for (JsonElement obj : arr) {
-					this.species.getItems().add(obj.toString());
+					this.species.getItems().add(obj.getAsString());
 				}
 			}
 		} catch (IOException e) {
@@ -212,8 +212,8 @@ public class MainController extends Controller {
 				JsonParser parser = new JsonParser();
 
 				JsonObject obj = parser.parse(r).getAsJsonObject();
-				this.startYear.getItems().add(obj.toString());
-				int year = Integer.parseInt(obj.toString());
+				this.startYear.getItems().add(obj.getAsString());
+				int year = Integer.parseInt(obj.getAsString());
 				while (year < 2018) {
 					this.startYear.getItems().add(year + "");
 					year++;
